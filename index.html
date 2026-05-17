@@ -1043,6 +1043,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
       <div class="section-label reveal">Share Your Experience</div>
       <h2 class="reveal">Leave a <em>review</em></h2>
       <p class="reveal">Your words help other families find the confidence they're looking for.</p>
+      <div id="reviewFormContent">
       <form class="review-form reveal" onsubmit="submitReview(event)">
         <div class="form-row">
           <div class="form-group">
@@ -1082,11 +1083,12 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
           </select>
         </div>
         <button type="submit" class="btn-gold" style="width:fit-content">SUBMIT REVIEW →</button>
-        <div class="success-msg" id="reviewSuccess">
-          <h3>Thank you! 🙏</h3>
-          <p>Your review has been received. It will appear after a quick verification.</p>
-        </div>
       </form>
+      </div>
+      <div class="success-msg" id="reviewSuccess">
+        <h3>Thank you! 🙏</h3>
+        <p>Your review has been received. It will appear after a quick verification.</p>
+      </div>
     </div>
   </section>
 
@@ -1213,52 +1215,54 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
     </div>
     <div class="modal-right">
       <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="free-label">Free Demo</div>
-      <h3>Tell us about you</h3>
-      <form class="modal-form" onsubmit="submitDemo(event)">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" placeholder="Aanya Mehra" required/>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="demo-email" placeholder="you@example.com" required/>
-        </div>
-        <div class="form-group">
-          <label>Phone / WhatsApp</label>
-          <input type="tel" id="demo-phone" placeholder="+91 XXXXX XXXXX" required/>
-        </div>
-        <div class="modal-form-row">
+      <div id="demoFormContent">
+        <div class="free-label">Free Demo</div>
+        <h3>Tell us about you</h3>
+        <form class="modal-form" onsubmit="submitDemo(event)">
           <div class="form-group">
-            <label>I Am A</label>
-            <select id="demo-type">
-              <option>Parent (for my child)</option>
-              <option>Student (under 18)</option>
-              <option>Professional</option>
-              <option>Adult learner</option>
-            </select>
+            <label>Your Name</label>
+            <input type="text" placeholder="Aanya Mehra" required/>
           </div>
           <div class="form-group">
-            <label>Interested In</label>
-            <select id="demo-interest">
-              <option>Public Speaking</option>
-              <option>Table Manners &amp; Etiquette</option>
-              <option>Basic Grammar (CBSE)</option>
-              <option>Interview Preparation</option>
-            </select>
+            <label>Email</label>
+            <input type="email" id="demo-email" placeholder="you@example.com" required/>
           </div>
-        </div>
-        <div class="form-group">
-          <label>A line about you (optional)</label>
-          <input type="text" id="demo-note" placeholder="What would you like to work on?"/>
-        </div>
-        <button type="submit" class="claim-btn">CLAIM MY FREE DEMO</button>
-        <p class="modal-note">No spam. We respond within 24 hours.</p>
-        <div class="success-msg" id="demoSuccess">
-          <h3>You're booked! 🎉</h3>
-          <p>We'll be in touch within 24 hours to confirm your session.</p>
-        </div>
-      </form>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" id="demo-phone" placeholder="+91 XXXXX XXXXX" required/>
+          </div>
+          <div class="modal-form-row">
+            <div class="form-group">
+              <label>I Am A</label>
+              <select id="demo-type">
+                <option>Parent (for my child)</option>
+                <option>Student (under 18)</option>
+                <option>Professional</option>
+                <option>Adult learner</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Interested In</label>
+              <select id="demo-interest">
+                <option>Public Speaking</option>
+                <option>Table Manners &amp; Etiquette</option>
+                <option>Basic Grammar (CBSE)</option>
+                <option>Interview Preparation</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>A line about you (optional)</label>
+            <input type="text" id="demo-note" placeholder="What would you like to work on?"/>
+          </div>
+          <button type="submit" class="claim-btn">CLAIM MY FREE DEMO</button>
+          <p class="modal-note">No spam. We respond within 24 hours.</p>
+        </form>
+      </div>
+      <div class="success-msg" id="demoSuccess">
+        <h3>You're booked! 🎉</h3>
+        <p>We'll be in touch within 24 hours to confirm your session.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -1393,11 +1397,11 @@ function submitDemo(e){
     method:'POST',
     body:JSON.stringify(data)
   }).then(()=>{
+    document.getElementById('demoFormContent').style.display='none';
     document.getElementById('demoSuccess').classList.add('show');
-    e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
   }).catch(()=>{
+    document.getElementById('demoFormContent').style.display='none';
     document.getElementById('demoSuccess').classList.add('show');
-    e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
   });
 }
 
@@ -1415,10 +1419,10 @@ function submitReview(e){
     method:'POST',
     body:JSON.stringify({formType:'review',name,program,text,type,stars})
   }).then(()=>{
-    e.target.querySelectorAll('.form-group,.form-row,button[type=submit]').forEach(el=>el.style.display='none');
+    document.getElementById('reviewFormContent').style.display='none';
     document.getElementById('reviewSuccess').classList.add('show');
   }).catch(()=>{
-    e.target.querySelectorAll('.form-group,.form-row,button[type=submit]').forEach(el=>el.style.display='none');
+    document.getElementById('reviewFormContent').style.display='none';
     document.getElementById('reviewSuccess').classList.add('show');
   });
 }
