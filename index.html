@@ -548,6 +548,15 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
   .steps-grid{grid-template-columns:1fr;gap:2rem}
   .step:not(:last-child)::after{content:'↓';right:50%;top:auto;bottom:-1.5rem}
   .about-badge{right:0}
+  .cursor,.cursor-ring{display:none}
+  body{cursor:auto}
+  .hero-badge{bottom:auto;top:1rem;right:1rem;padding:0.7rem 0.9rem}
+  .hero-badge .num{font-size:1.4rem}
+  .hero-badge .lbl{font-size:0.5rem}
+  .hero-quote{display:block;top:auto;bottom:1rem;left:0.5rem;font-size:0.68rem;max-width:150px;padding:0.7rem 0.8rem}
+  .about-badge{top:0.5rem;padding:0.7rem 0.9rem}
+  .about-badge .num{font-size:1.4rem}
+  .about-badge .lbl{font-size:0.5rem}
 }
 .mobile-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:200;flex-direction:column;padding:5.5rem 2.5rem 2.5rem;gap:1.8rem}
 .mobile-menu.open{display:flex;animation:fadeIn 0.3s ease}
