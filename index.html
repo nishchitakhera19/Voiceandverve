@@ -1121,20 +1121,20 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
         <div class="form-row">
           <div class="form-group">
             <label>Your Name</label>
-            <input type="text" placeholder="Aanya Mehra" required/>
+            <input type="text" id="c-name" placeholder="Aanya Mehra" required/>
           </div>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" placeholder="you@example.com" required/>
+          <input type="email" id="c-email" placeholder="you@example.com" required/>
         </div>
         <div class="form-group">
           <label>Phone / WhatsApp</label>
-          <input type="tel" placeholder="+91 XXXXX XXXXX" required/>
+          <input type="tel" id="c-phone" placeholder="+91 XXXXX XXXXX" required/>
         </div>
         <div class="form-group">
           <label>Interested In</label>
-          <select>
+          <select id="c-interest">
             <option>Public Speaking</option>
             <option>Table Manners &amp; Etiquette</option>
             <option>Basic Grammar (CBSE)</option>
@@ -1144,7 +1144,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea placeholder="Tell us about your child or what you'd like to work on..." style="min-height:130px"></textarea>
+          <textarea id="c-message" placeholder="Tell us about your child or what you'd like to work on..." style="min-height:130px"></textarea>
         </div>
         <button type="submit" class="btn-gold">SEND MESSAGE →</button>
         <div class="success-msg" id="contactSuccess">
@@ -1375,20 +1375,30 @@ function closeModalOutside(e){if(e.target===document.getElementById('modalOverla
 // ── FORMS ──
 function submitDemo(e){
   e.preventDefault();
-  // Log data (in production, send to your backend/email service)
   const data={
     name:e.target.querySelector('input[type=text]').value,
     email:document.getElementById('demo-email').value,
     phone:document.getElementById('demo-phone').value,
     type:document.getElementById('demo-type').value,
     interest:document.getElementById('demo-interest').value,
-    note:document.getElementById('demo-note').value,
-    timestamp:new Date().toISOString()
+    note:document.getElementById('demo-note').value
   };
-  console.log('DEMO SIGNUP:', data); // Replace with your backend call
-  document.getElementById('demoSuccess').classList.add('show');
-  e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+  const btn=e.target.querySelector('button[type=submit]');
+  btn.textContent='Sending...';
+  btn.disabled=true;
+  fetch('https://script.google.com/macros/s/AKfycbwWiJfN-AtWOIfKLTBODbKBpnHNcMydGmtkFAGN52QuaEzzoLVaznCUi12F7A8FekNHfQ/exec',{
+    method:'POST',
+    body:JSON.stringify(data)
+  }).then(()=>{
+    document.getElementById('demoSuccess').classList.add('show');
+    e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+  }).catch(()=>{
+    document.getElementById('demoSuccess').classList.add('show');
+    e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+  });
 }
+const SHEET_URL='https://script.google.com/macros/s/AKfycbwWiJfN-AtWOIfKLTBODbKBpnHNcMydGmtkFAGN52QuaEzzoLVaznCUi12F7A8FekNHfQ/exec';
+
 function submitReview(e){
   e.preventDefault();
   const name=document.getElementById('r-name').value;
@@ -1397,24 +1407,64 @@ function submitReview(e){
   const type=document.getElementById('r-type').value;
   const ratingInput=document.querySelector('input[name="rating"]:checked');
   const stars=ratingInput?parseInt(ratingInput.value):5;
-  const starStr='★'.repeat(stars)+'☆'.repeat(5-stars);
-  const data={name,program,text,type,stars,timestamp:new Date().toISOString()};
-  console.log('NEW REVIEW:', data); // Replace with your backend call
-  const card=document.createElement('div');
-  card.className='review-full';
-  card.dataset.type=type.toLowerCase();
-  card.style.animation='fadeIn 0.5s ease';
-  card.innerHTML=`<div class="stars">${starStr}</div><div class="text">"${text}"</div><div class="author">${name}</div><div class="course-tag">${program} · ${type}</div>`;
-  document.getElementById('reviewsContainer').prepend(card);
-  document.getElementById('reviewSuccess').classList.add('show');
-  e.target.reset();
-  setTimeout(()=>document.getElementById('reviewSuccess').classList.remove('show'),4000);
+  const btn=e.target.querySelector('button[type=submit]');
+  btn.textContent='Sending...';btn.disabled=true;
+  fetch(SHEET_URL,{
+    method:'POST',
+    body:JSON.stringify({formType:'review',name,program,text,type,stars})
+  }).then(()=>{
+    document.getElementById('reviewSuccess').classList.add('show');
+    e.target.reset();
+    btn.textContent='SUBMIT REVIEW →';btn.disabled=false;
+    setTimeout(()=>document.getElementById('reviewSuccess').classList.remove('show'),5000);
+  }).catch(()=>{
+    document.getElementById('reviewSuccess').classList.add('show');
+    e.target.reset();
+    btn.textContent='SUBMIT REVIEW →';btn.disabled=false;
+    setTimeout(()=>document.getElementById('reviewSuccess').classList.remove('show'),5000);
+  });
 }
+
 function submitContact(e){
   e.preventDefault();
-  document.getElementById('contactSuccess').classList.add('show');
-  e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+  const name=document.getElementById('c-name').value;
+  const email=document.getElementById('c-email').value;
+  const phone=document.getElementById('c-phone').value;
+  const interest=document.getElementById('c-interest').value;
+  const message=document.getElementById('c-message').value;
+  const btn=e.target.querySelector('button[type=submit]');
+  btn.textContent='Sending...';btn.disabled=true;
+  fetch(SHEET_URL,{
+    method:'POST',
+    body:JSON.stringify({formType:'contact',name,email,phone,interest,message})
+  }).then(()=>{
+    document.getElementById('contactSuccess').classList.add('show');
+    e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+  }).catch(()=>{
+    document.getElementById('contactSuccess').classList.add('show');
+    e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+  });
 }
+
+// ── LOAD APPROVED REVIEWS FROM SHEET ──
+function loadApprovedReviews(){
+  fetch(SHEET_URL)
+    .then(r=>r.json())
+    .then(reviews=>{
+      if(!reviews.length)return;
+      const container=document.getElementById('reviewsContainer');
+      container.innerHTML='';
+      reviews.forEach(r=>{
+        const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
+        const card=document.createElement('div');
+        card.className='review-full reveal';
+        card.dataset.type=(r.type||'').toLowerCase();
+        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
+        container.appendChild(card);
+      });
+    }).catch(()=>{});
+}
+loadApprovedReviews();
 
 // ── MOBILE MENU ──
 function toggleMobileMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
