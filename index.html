@@ -1415,15 +1415,11 @@ function submitReview(e){
     method:'POST',
     body:JSON.stringify({formType:'review',name,program,text,type,stars})
   }).then(()=>{
+    e.target.querySelectorAll('.form-group,.form-row,button[type=submit]').forEach(el=>el.style.display='none');
     document.getElementById('reviewSuccess').classList.add('show');
-    e.target.reset();
-    btn.textContent='SUBMIT REVIEW →';btn.disabled=false;
-    setTimeout(()=>document.getElementById('reviewSuccess').classList.remove('show'),5000);
   }).catch(()=>{
+    e.target.querySelectorAll('.form-group,.form-row,button[type=submit]').forEach(el=>el.style.display='none');
     document.getElementById('reviewSuccess').classList.add('show');
-    e.target.reset();
-    btn.textContent='SUBMIT REVIEW →';btn.disabled=false;
-    setTimeout(()=>document.getElementById('reviewSuccess').classList.remove('show'),5000);
   });
 }
 
