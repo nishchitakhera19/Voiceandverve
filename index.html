@@ -1373,9 +1373,12 @@ function closeModal(){document.getElementById('modalOverlay').classList.remove('
 function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal()}
 
 // ── FORMS ──
+const SHEET_URL='https://script.google.com/macros/s/AKfycbwWiJfN-AtWOIfKLTBODbKBpnHNcMydGmtkFAGN52QuaEzzoLVaznCUi12F7A8FekNHfQ/exec';
+
 function submitDemo(e){
   e.preventDefault();
   const data={
+    formType:'demo',
     name:e.target.querySelector('input[type=text]').value,
     email:document.getElementById('demo-email').value,
     phone:document.getElementById('demo-phone').value,
@@ -1386,7 +1389,7 @@ function submitDemo(e){
   const btn=e.target.querySelector('button[type=submit]');
   btn.textContent='Sending...';
   btn.disabled=true;
-  fetch('https://script.google.com/macros/s/AKfycbwWiJfN-AtWOIfKLTBODbKBpnHNcMydGmtkFAGN52QuaEzzoLVaznCUi12F7A8FekNHfQ/exec',{
+  fetch(SHEET_URL,{
     method:'POST',
     body:JSON.stringify(data)
   }).then(()=>{
@@ -1397,7 +1400,6 @@ function submitDemo(e){
     e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
   });
 }
-const SHEET_URL='https://script.google.com/macros/s/AKfycbwWiJfN-AtWOIfKLTBODbKBpnHNcMydGmtkFAGN52QuaEzzoLVaznCUi12F7A8FekNHfQ/exec';
 
 function submitReview(e){
   e.preventDefault();
