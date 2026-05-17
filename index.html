@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Voice & Verve · By Adv. Ritu Khera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Cormorant:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d0f1a;
+  --navy2:#12141f;
+  --navy3:#1a1d2e;
+  --gold:#d4a017;
+  --gold2:#e8b42a;
+  --white:#ffffff;
+  --muted:#9a9aaa;
+  --border:#2a2d3e;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Jost',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:72px;background:rgba(13,15,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.logo{display:flex;flex-direction:column;gap:1px;text-decoration:none}
+.logo-name{font-family:var(--serif);font-size:1.35rem;font-weight:600;color:var(--white);letter-spacing:0.01em}
+.logo-name span{color:var(--gold)}
+.logo-sub{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:var(--sans);font-size:0.85rem;font-weight:400;color:var(--muted);text-decoration:none;letter-spacing:0.05em;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:#000;border:none;padding:0.6rem 1.4rem;font-family:var(--sans);font-size:0.8rem;font-weight:500;letter-spacing:0.08em;cursor:pointer;display:flex;align-items:center;gap:0.5rem;transition:background 0.2s}
+.nav-cta:hover{background:var(--gold2)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.burger span{display:block;width:22px;height:1.5px;background:var(--white)}
+
+/* ── PAGES ── */
+.page{display:none;padding-top:72px}
+.page.active{display:block}
+
+/* ── HOME ── */
+/* Hero */
+.hero{min-height:calc(100vh - 72px);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:4rem 3rem;gap:3rem;position:relative}
+.hero-label{font-family:var(--sans);font-size:0.7rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;display:flex;align-items:center;gap:0.5rem;margin-bottom:1.5rem}
+.hero-label::before{content:'✦';font-size:0.6rem}
+.hero-h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.2rem);font-weight:500;line-height:1.1;margin-bottom:1.5rem}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-body{font-size:0.95rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;max-width:460px}
+.hero-body strong{color:var(--white);font-weight:400}
+.hero-body .hl{color:var(--gold)}
+.hero-btns{display:flex;align-items:center;gap:2rem}
+.btn-gold{background:var(--gold);color:#000;border:none;padding:0.85rem 1.8rem;font-family:var(--sans);font-size:0.78rem;font-weight:500;letter-spacing:0.1em;cursor:pointer;display:flex;align-items:center;gap:0.5rem;text-decoration:none;transition:background 0.2s}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ghost{color:var(--white);font-family:var(--sans);font-size:0.78rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;display:flex;align-items:center;gap:0.4rem;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;transition:border-color 0.2s}
+.btn-ghost:hover{border-color:var(--white)}
+.hero-img-wrap{position:relative}
+.hero-img-wrap img{width:100%;height:580px;object-fit:cover;display:block}
+.hero-badge{position:absolute;bottom:1.5rem;right:1.5rem;background:var(--gold);padding:1rem 1.2rem;color:#000}
+.hero-badge .num{font-family:var(--serif);font-size:2rem;font-weight:600;display:block;line-height:1}
+.hero-badge .lbl{font-family:var(--sans);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-top:0.2rem}
+.hero-quote{position:absolute;top:1.5rem;left:-1rem;background:var(--navy2);border:1px solid var(--border);padding:0.8rem 1rem;font-family:var(--sans);font-size:0.75rem;color:var(--muted)}
+.hero-quote::before{content:'"';font-family:var(--serif);font-size:1.2rem;color:var(--gold);display:block;line-height:1;margin-bottom:0.2rem}
+
+/* Marquee */
+.marquee-wrap{background:var(--navy2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:1.2rem 0}
+.marquee-track{display:flex;gap:0;white-space:nowrap;animation:marquee 20s linear infinite}
+.marquee-item{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--muted);padding:0 2rem;display:flex;align-items:center;gap:1.5rem}
+.marquee-item::after{content:'✦';color:var(--gold);font-style:normal;font-size:0.7rem}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat{padding:3rem 2rem;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-num{font-family:var(--serif);font-size:3rem;font-weight:500;color:var(--white);display:block;line-height:1}
+.stat-label{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:0.5rem;display:block}
+
+/* Courses preview */
+.section{padding:6rem 3rem}
+.section-label{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem}
+.section-h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.15;margin-bottom:1.5rem}
+.section-h2 em{font-style:italic;color:var(--gold)}
+.section-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+.link-arrow{font-family:var(--sans);font-size:0.78rem;letter-spacing:0.1em;color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:2px;display:flex;align-items:center;gap:0.4rem;transition:border-color 0.2s}
+.link-arrow:hover{border-color:var(--white)}
+.courses-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.course-card{background:var(--navy2);padding:3rem;cursor:pointer;transition:background 0.2s}
+.course-card:hover{background:var(--navy3)}
+.course-icon{font-size:1.3rem;color:var(--gold);margin-bottom:1.5rem;display:block}
+.course-title{font-family:var(--serif);font-size:1.5rem;font-weight:500;margin-bottom:0.5rem}
+.course-sub{color:var(--muted);font-size:0.85rem;margin-bottom:1.5rem}
+.learn-more{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.12em;color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;display:inline-flex;align-items:center;gap:0.4rem}
+
+/* Testimonials preview */
+.reviews-preview{padding:6rem 3rem;background:var(--navy2)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.review-card{background:var(--navy);border:1px solid var(--border);padding:2rem}
+.review-stars{color:var(--gold);font-size:0.8rem;margin-bottom:1rem;letter-spacing:0.1em}
+.review-text{font-family:var(--serif);font-size:1.05rem;font-style:italic;line-height:1.6;margin-bottom:1.5rem;color:rgba(255,255,255,0.9)}
+.review-author{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+
+/* CTA section */
+.cta-section{padding:10rem 3rem;text-align:center;background:radial-gradient(ellipse at center,rgba(212,160,23,0.08) 0%,transparent 70%)}
+.cta-label{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem}
+.cta-h2{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:500;line-height:1.1;margin-bottom:0.5rem}
+.cta-h2 em{font-style:italic;color:var(--gold)}
+.cta-sub{font-size:0.85rem;color:var(--muted);margin-bottom:2.5rem}
+
+/* Footer */
+footer{background:var(--navy2);border-top:1px solid var(--border);padding:4rem 3rem 2rem}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+.footer-brand .tagline{font-family:var(--serif);font-size:2rem;font-weight:500;line-height:1.2;margin:1rem 0}
+.footer-brand .tagline em{font-style:italic;color:var(--gold)}
+.footer-book{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.15em;color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px}
+.footer-col-title{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.25em;color:var(--muted);text-transform:uppercase;margin-bottom:1.5rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.8rem}
+.footer-col ul li a{color:var(--muted);text-decoration:none;font-size:0.88rem;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-contact p{color:var(--muted);font-size:0.88rem;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.footer-socials{display:flex;gap:1rem;margin-top:1.5rem}
+.footer-socials a{color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.05em;transition:color 0.2s;border:1px solid var(--border);padding:0.4rem 0.7rem}
+.footer-socials a:hover{color:var(--gold);border-color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:0.78rem;color:var(--muted)}
+.footer-bottom .values{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;color:var(--border);text-transform:uppercase}
+
+/* ── ABOUT PAGE ── */
+.about-hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px);padding:4rem 3rem;gap:4rem;align-items:center}
+.about-img-wrap{position:relative}
+.about-img-wrap img{width:100%;height:620px;object-fit:cover}
+.about-badge{position:absolute;top:1.5rem;right:-1.5rem;background:var(--navy2);border:1px solid var(--border);padding:1.2rem 1.5rem}
+.about-badge .num{font-family:var(--serif);font-size:2rem;font-weight:600;display:block;color:var(--white);line-height:1}
+.about-badge .lbl{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:block;margin-top:0.3rem}
+.about-content .label{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem}
+.about-content h1{font-family:var(--serif);font-size:clamp(2.5rem,4vw,4rem);font-weight:500;line-height:1.05;margin-bottom:0.3rem}
+.about-content h1 em{font-style:italic;color:var(--gold)}
+.about-content .subtitle{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--muted);line-height:1.5;margin-bottom:2rem}
+.about-content p{color:rgba(255,255,255,0.8);font-size:0.9rem;line-height:1.9;margin-bottom:1rem}
+.about-content p strong{color:var(--white);font-weight:500}
+.about-content p .hl{color:var(--gold)}
+.about-content blockquote{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--muted);border-left:2px solid var(--gold);padding-left:1rem;margin:1.5rem 0}
+
+/* Parent letter */
+.parent-letter{padding:8rem 3rem;text-align:center;border-top:1px solid var(--border)}
+.parent-letter .inner{max-width:800px;margin:0 auto}
+.parent-letter h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.2;margin-bottom:0.8rem}
+.parent-letter h2 em{font-style:italic;color:var(--gold)}
+.parent-letter p{font-size:0.92rem;color:rgba(255,255,255,0.75);line-height:1.9;text-align:left;margin-bottom:1rem}
+.what-learn{margin:2.5rem 0;text-align:left}
+.what-learn-title{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+.what-learn-title::before{content:'✦';font-size:0.5rem}
+.learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem 3rem}
+.learn-item{font-size:0.88rem;color:rgba(255,255,255,0.8);display:flex;align-items:flex-start;gap:0.6rem}
+.learn-item::before{content:'✦';color:var(--gold);font-size:0.55rem;flex-shrink:0;margin-top:0.4rem}
+.parent-cta{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:var(--gold);margin:1.5rem 0 0.5rem}
+.parent-cta::before{content:'🎁 '}
+.sign{text-align:left;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border)}
+.sign p{font-size:0.9rem;color:var(--muted)}
+.sign em{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--gold);display:block;margin:0.3rem 0}
+
+/* Credentials */
+.credentials{padding:6rem 3rem;background:var(--navy2)}
+.cred-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:3rem}
+.cred-card{background:var(--navy2);padding:2.5rem 2rem}
+.cred-icon{color:var(--gold);font-size:1.2rem;margin-bottom:1.2rem;display:block}
+.cred-text{font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.6}
+
+/* Quote */
+.philosophy-quote{padding:8rem 3rem;text-align:center;border-top:1px solid var(--border)}
+.philosophy-quote blockquote{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);font-style:italic;line-height:1.5;max-width:800px;margin:0 auto 2rem;color:var(--white)}
+.philosophy-quote .divider{width:60px;height:1px;background:var(--gold);margin:0 auto 1.5rem}
+.philosophy-quote cite{font-family:var(--sans);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+
+/* Timeline */
+.timeline{padding:6rem 3rem}
+.timeline-items{margin-top:3rem;position:relative}
+.timeline-items::before{content:'';position:absolute;left:220px;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-item{display:grid;grid-template-columns:200px 40px 1fr;align-items:flex-start;margin-bottom:3.5rem}
+.timeline-year{font-family:var(--serif);font-size:2.5rem;font-weight:500;color:var(--gold);line-height:1;text-align:right;padding-right:1rem}
+.timeline-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);margin-top:0.4rem;position:relative;z-index:1;margin-left:15px}
+.timeline-content{padding-left:1.5rem}
+.timeline-content h3{font-family:var(--serif);font-size:1.3rem;font-weight:500;margin-bottom:0.4rem}
+.timeline-content p{font-size:0.88rem;color:var(--muted);line-height:1.7}
+
+/* ── COURSES PAGE ── */
+.courses-hero{padding:6rem 3rem;text-align:left}
+.courses-hero h1{font-family:var(--serif);font-size:clamp(3rem,6vw,5rem);font-weight:500;line-height:1.05}
+.courses-hero h1 em{font-style:italic;color:var(--gold)}
+.courses-hero p{max-width:600px;color:var(--muted);font-size:0.92rem;margin-top:1.5rem;line-height:1.9}
+.program{display:grid;grid-template-columns:1fr 1fr;min-height:500px;border-top:1px solid var(--border)}
+.program.reverse{direction:rtl}
+.program.reverse>*{direction:ltr}
+.program-img{overflow:hidden}
+.program-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease}
+.program:hover .program-img img{transform:scale(1.03)}
+.program-content{padding:4rem;display:flex;flex-direction:column;justify-content:center;background:var(--navy2)}
+.program-num{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.8rem}
+.program-num .icon{color:var(--gold);font-size:1rem}
+.program-title{font-family:var(--serif);font-size:2.2rem;font-weight:500;margin-bottom:0.5rem;line-height:1.1}
+.program-tagline{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1rem;margin-bottom:1.5rem}
+.program-desc{font-size:0.88rem;color:var(--muted);line-height:1.9;margin-bottom:2rem}
+.program-meta{display:flex;gap:2.5rem;margin-bottom:2rem}
+.meta-item{display:flex;align-items:center;gap:0.5rem}
+.meta-label{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:block}
+.meta-value{font-size:0.85rem;color:var(--white)}
+.program-features{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:2rem}
+.feature{font-size:0.83rem;color:rgba(255,255,255,0.75);display:flex;align-items:flex-start;gap:0.5rem}
+.feature::before{content:'✓';color:var(--gold);flex-shrink:0}
+
+/* ── REVIEWS PAGE ── */
+.reviews-hero{padding:6rem 3rem}
+.reviews-hero h1{font-family:var(--serif);font-size:clamp(3rem,5vw,4.5rem);font-weight:500;line-height:1.1}
+.reviews-hero h1 em{font-style:italic;color:var(--gold)}
+.reviews-filter{margin-top:2rem;display:flex;gap:1rem}
+.filter-btn{background:var(--gold);color:#000;border:none;padding:0.5rem 1.2rem;font-family:var(--sans);font-size:0.75rem;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase}
+.filter-btn.outline{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.all-reviews{padding:0 3rem 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.review-full{background:var(--navy2);border:1px solid var(--border);padding:2rem}
+.review-full .stars{color:var(--gold);font-size:0.8rem;margin-bottom:1rem}
+.review-full .text{font-family:var(--serif);font-size:1rem;font-style:italic;line-height:1.7;color:rgba(255,255,255,0.88);margin-bottom:1.5rem}
+.review-full .author{font-family:var(--sans);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
+.review-full .course-tag{font-size:0.68rem;color:var(--gold);margin-top:0.3rem}
+
+/* Leave a review */
+.leave-review{padding:6rem 3rem;background:var(--navy2);border-top:1px solid var(--border)}
+.leave-review .inner{max-width:700px}
+.leave-review h2{font-family:var(--serif);font-size:2.5rem;font-weight:500;margin-bottom:0.5rem}
+.leave-review h2 em{font-style:italic;color:var(--gold)}
+.leave-review p{color:var(--muted);font-size:0.88rem;margin-bottom:2.5rem}
+.review-form{display:flex;flex-direction:column;gap:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.form-group{display:flex;flex-direction:column;gap:0.5rem}
+.form-group label{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.form-group input,.form-group select,.form-group textarea{background:transparent;border:none;border-bottom:1px solid var(--border);padding:0.7rem 0;color:var(--white);font-family:var(--sans);font-size:0.9rem;outline:none;transition:border-color 0.2s;width:100%}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-bottom-color:var(--gold)}
+.form-group select option{background:var(--navy2);color:var(--white)}
+.form-group textarea{resize:vertical;min-height:100px}
+.star-rating{display:flex;gap:0.5rem;flex-direction:row-reverse;justify-content:flex-end}
+.star-rating input{display:none}
+.star-rating label{font-size:1.5rem;color:var(--border);cursor:pointer;transition:color 0.15s}
+.star-rating label:hover,.star-rating label:hover~label,.star-rating input:checked~label{color:var(--gold)}
+.form-note{font-size:0.78rem;color:var(--muted)}
+
+/* ── CONTACT PAGE ── */
+.contact-page{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px)}
+.contact-left{padding:6rem 4rem;background:var(--navy2);display:flex;flex-direction:column;justify-content:center}
+.contact-left h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:500;margin-bottom:2rem;line-height:1.1}
+.contact-left h1 em{font-style:italic;color:var(--gold)}
+.contact-info{margin:2rem 0}
+.contact-info-item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.8rem}
+.contact-info-item .icon{color:var(--gold);font-size:1rem;margin-top:0.15rem;flex-shrink:0}
+.contact-info-item p{font-size:0.9rem;color:var(--muted);line-height:1.7}
+.contact-info-item p strong{color:var(--white);font-weight:400;display:block;font-size:0.82rem;letter-spacing:0.05em;margin-bottom:0.2rem}
+.contact-socials{display:flex;gap:0.8rem;margin-top:2rem}
+.contact-socials a{color:var(--muted);border:1px solid var(--border);padding:0.5rem 0.9rem;font-size:0.75rem;text-decoration:none;letter-spacing:0.05em;transition:all 0.2s}
+.contact-socials a:hover{color:var(--gold);border-color:var(--gold)}
+.contact-right{padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.contact-right h2{font-family:var(--serif);font-size:1.8rem;margin-bottom:0.5rem}
+.contact-right p{color:var(--muted);font-size:0.85rem;margin-bottom:2.5rem}
+.contact-form{display:flex;flex-direction:column;gap:1.5rem}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{display:grid;grid-template-columns:1fr 1.3fr;max-width:860px;width:90%;max-height:90vh;overflow-y:auto}
+.modal-left{background:var(--gold);padding:3rem;display:flex;flex-direction:column;justify-content:space-between}
+.modal-left .star-icon{font-size:1.5rem;color:rgba(0,0,0,0.5);margin-bottom:1.5rem;display:block}
+.modal-left .complimentary{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(0,0,0,0.6);margin-bottom:0.8rem}
+.modal-left h2{font-family:var(--serif);font-size:2rem;font-weight:600;color:#000;line-height:1.2;margin-bottom:2rem}
+.modal-left h2 em{font-style:italic}
+.modal-perks{list-style:none;display:flex;flex-direction:column;gap:0.8rem}
+.modal-perks li{font-size:0.85rem;color:rgba(0,0,0,0.75);display:flex;align-items:center;gap:0.6rem}
+.modal-perks li::before{content:'✓';font-weight:500}
+.modal-right{background:var(--navy);padding:3rem;position:relative}
+.modal-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1}
+.modal-right .free-label{font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.8rem}
+.modal-right h3{font-family:var(--serif);font-size:1.8rem;font-weight:500;margin-bottom:2rem}
+.modal-form{display:flex;flex-direction:column;gap:1.2rem}
+.modal-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.claim-btn{background:var(--gold);color:#000;border:none;padding:1rem 2rem;font-family:var(--sans);font-size:0.8rem;font-weight:500;letter-spacing:0.1em;cursor:pointer;width:100%;margin-top:0.5rem;transition:background 0.2s}
+.claim-btn:hover{background:var(--gold2)}
+.modal-note{font-size:0.75rem;color:var(--muted);margin-top:0.8rem}
+
+/* ── SUCCESS STATE ── */
+.success-msg{display:none;text-align:center;padding:2rem}
+.success-msg.show{display:block}
+.success-msg h3{font-family:var(--serif);font-size:1.5rem;color:var(--gold);margin-bottom:0.5rem}
+.success-msg p{color:var(--muted);font-size:0.88rem}
+
+/* ── UTILS ── */
+.with-label{display:flex;flex-direction:column}
+.mt1{margin-top:1rem}.mt2{margin-top:2rem}.mt3{margin-top:3rem}
+.text-gold{color:var(--gold)}
+.placeholder-img{background:var(--navy3);width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  .hero,.about-hero,.contact-page{grid-template-columns:1fr}
+  .hero-img-wrap{display:none}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-right:none;border-bottom:1px solid var(--border)}
+  .courses-grid{grid-template-columns:1fr}
+  .program,.program.reverse{grid-template-columns:1fr}
+  .program-img{height:300px}
+  .program.reverse{direction:ltr}
+  .reviews-grid,.all-reviews{grid-template-columns:1fr}
+  .cred-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .learn-grid{grid-template-columns:1fr}
+  .form-row,.modal-form-row{grid-template-columns:1fr}
+  .modal{grid-template-columns:1fr}
+  .modal-left{display:none}
+  .section{padding:4rem 1.5rem}
+  .reviews-hero,.courses-hero,.leave-review,.timeline,.credentials,.parent-letter{padding:4rem 1.5rem}
+  .all-reviews{padding:0 1.5rem 4rem}
+  .timeline-items::before{left:80px}
+  .timeline-item{grid-template-columns:60px 30px 1fr}
+  .timeline-year{font-size:1.5rem}
+  .contact-page{grid-template-columns:1fr}
+  .contact-left,.contact-right{padding:4rem 1.5rem}
+}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:200;flex-direction:column;padding:5rem 2rem 2rem;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--serif);font-size:2rem;color:var(--white);text-decoration:none}
+.mobile-menu a.gold{color:var(--gold)}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo" onclick="showPage('home')">
+    <span class="logo-name">Voice<span>&</span>Verve</span>
+    <span class="logo-sub">By Adv. Ritu Khera</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active" id="nav-home" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" id="nav-about" onclick="showPage('about')">About</a></li>
+    <li><a href="#" id="nav-courses" onclick="showPage('courses')">Courses</a></li>
+    <li><a href="#" id="nav-reviews" onclick="showPage('reviews')">Reviews</a></li>
+    <li><a href="#" id="nav-contact" onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Free Demo ↗</button>
+  <button class="burger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMobileMenu()">✕</button>
+  <a href="#" onclick="showPage('home');toggleMobileMenu()">Home</a>
+  <a href="#" onclick="showPage('about');toggleMobileMenu()">About</a>
+  <a href="#" onclick="showPage('courses');toggleMobileMenu()">Courses</a>
+  <a href="#" onclick="showPage('reviews');toggleMobileMenu()">Reviews</a>
+  <a href="#" onclick="showPage('contact');toggleMobileMenu()">Contact</a>
+  <a href="#" class="gold" onclick="openModal();toggleMobileMenu()">🎁 Book Free Demo →</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-label">Hello Parents · With Adv. Ritu Khera</div>
+      <h1 class="hero-h1">Does your child hesitate to speak <em>English in public?</em></h1>
+      <p class="hero-body">Let's turn that hesitation into <strong>confidence</strong>. With over <span class="hl">20 years of teaching expertise</span> and a TESOL certification, I help children speak with <span class="hl">clarity, fluency and impact</span> — from the very first sentence.</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="openModal()">🎁 FREE DEMO CLASS ↗</button>
+        <a href="#" class="btn-ghost" onclick="showPage('courses')">BROWSE COURSES →</a>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-quote">Confidence is built.</div>
+      <!-- Replace src with your actual photo URL -->
+      <div class="placeholder-img" style="height:580px">[ Add your photo here ]</div>
+      <div class="hero-badge">
+        <span class="num">20+</span>
+        <span class="lbl">Years of Impact</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Interview Prep</span>
+      <span class="marquee-item">TESOL Certified</span>
+      <span class="marquee-item">Public Speaking</span>
+      <span class="marquee-item">Confidence Building</span>
+      <span class="marquee-item">Table Manners</span>
+      <span class="marquee-item">CBSE Grammar</span>
+      <span class="marquee-item">Interview Prep</span>
+      <span class="marquee-item">TESOL Certified</span>
+      <span class="marquee-item">Public Speaking</span>
+      <span class="marquee-item">Confidence Building</span>
+      <span class="marquee-item">Table Manners</span>
+      <span class="marquee-item">CBSE Grammar</span>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Years Teaching</span></div>
+    <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Students Coached</span></div>
+    <div class="stat"><span class="stat-num">LL.M</span><span class="stat-label">Advocate, Supreme Court</span></div>
+    <div class="stat"><span class="stat-num">TESOL</span><span class="stat-label">Certified Professional</span></div>
+  </div>
+
+  <!-- Courses preview -->
+  <section class="section">
+    <div class="section-top">
+      <div>
+        <div class="section-label">What We Teach</div>
+        <h2 class="section-h2">Four programs. <em>One</em><br>transformed child.</h2>
+      </div>
+      <a href="#" class="link-arrow" onclick="showPage('courses')">ALL COURSES →</a>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card" onclick="showPage('courses')">
+        <span class="course-icon">🎤</span>
+        <div class="course-title">Public Speaking</div>
+        <div class="course-sub">From hesitation to standing ovations.</div>
+        <a href="#" class="learn-more" onclick="showPage('courses')">LEARN MORE →</a>
+      </div>
+      <div class="course-card" onclick="showPage('courses')">
+        <span class="course-icon">🍽️</span>
+        <div class="course-title">Table Manners & Etiquette</div>
+        <div class="course-sub">Compose yourself at any table, anywhere in the world.</div>
+        <a href="#" class="learn-more" onclick="showPage('courses')">LEARN MORE →</a>
+      </div>
+      <div class="course-card" onclick="showPage('courses')">
+        <span class="course-icon">📖</span>
+        <div class="course-title">Basic Grammar (CBSE)</div>
+        <div class="course-sub">Tense, voice, narration — finally clear.</div>
+        <a href="#" class="learn-more" onclick="showPage('courses')">LEARN MORE →</a>
+      </div>
+      <div class="course-card" onclick="showPage('courses')">
+        <span class="course-icon">💼</span>
+        <div class="course-title">Interview Preparation</div>
+        <div class="course-sub">Walk in nervous. Walk out hired.</div>
+        <a href="#" class="learn-more" onclick="showPage('courses')">LEARN MORE →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews preview -->
+  <section class="reviews-preview">
+    <div class="section-top">
+      <div>
+        <div class="section-label">Voices We've Shaped</div>
+        <h2 class="section-h2">Real stories. <em>Real</em><br>change.</h2>
+      </div>
+      <a href="#" class="link-arrow" onclick="showPage('reviews')">ALL REVIEWS →</a>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"My daughter went from refusing to speak in class to winning the school debate. Ritu ma'am's method is unlike anything else."</div>
+        <div class="review-author">Priya Sharma · Parent</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"The interview preparation program got me my dream job. The mock sessions and feedback were incredibly detailed."</div>
+        <div class="review-author">Arjun Mehta · Professional</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"CBSE grammar finally clicked for my son. His board exam scores improved dramatically after just 8 weeks."</div>
+        <div class="review-author">Sunita Verma · Parent</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-label">Your Child's Turn</div>
+    <h2 class="cta-h2">Don't just speak.<br><em>Be heard.</em></h2>
+    <p class="cta-sub">30 mins · 1-on-1 with Adv. Ritu Khera · Online</p>
+    <button class="btn-gold" style="margin:0 auto" onclick="openModal()">🎁 BOOK FREE DEMO CLASS ↗</button>
+  </section>
+
+</div><!-- /home -->
+
+
+<!-- ══════════════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-about">
+
+  <section class="about-hero">
+    <div class="about-img-wrap">
+      <div class="about-badge" style="top:1.5rem;right:0">
+        <span class="num">200+</span><span class="lbl">Students Coached</span>
+      </div>
+      <!-- Replace with your actual photo -->
+      <div class="placeholder-img" style="height:620px">[ Add your photo here ]</div>
+      <div class="about-badge" style="bottom:0;left:0;right:auto;top:auto;background:var(--gold)">
+        <span class="num" style="color:#000">20+</span>
+        <span class="lbl" style="color:rgba(0,0,0,0.7)">Years Teaching</span>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="label">Meet the Educator</div>
+      <h1>Adv. Ritu <em>Khera</em></h1>
+      <div class="subtitle">LL.M · Certified TESOL Professional<br>English Public Speaking Expert</div>
+      <p>An educator. An advocate. A voice for the voiceless. With over <span class="hl">20 years of teaching expertise</span> and a courtroom career spanning India's Supreme Court, Ritu brings a rare blend of pedagogy and persuasion to every classroom.</p>
+      <p>She helps children develop <strong>confidence, clarity and fluency</strong> in English — enabling them to speak effectively in speeches, debates, presentations and everyday conversations.</p>
+      <blockquote>"I train students to begin their speech with confidence, clarity and strong impact — helping them capture attention from the very first sentence."</blockquote>
+      <button class="btn-gold mt2" onclick="openModal()">🎁 BOOK A FREE DEMO →</button>
+    </div>
+  </section>
+
+  <!-- Parent letter -->
+  <section class="parent-letter">
+    <div class="inner">
+      <div class="section-label" style="text-align:center">A Note to Parents</div>
+      <h2>Does your child hesitate to speak English in public?<br><em>Let's turn that hesitation into confidence.</em></h2>
+      <div class="mt3">
+        <p>Hello Parents,</p>
+        <p>I am <strong>Adv. Ritu Khera (LL.M)</strong> — an experienced English Language Educator with over <span class="text-gold">20 years of teaching expertise</span>, a <strong>Certified TESOL Professional</strong>, and an English Public Speaking Expert.</p>
+        <p>I help children develop confidence, clarity and fluency in English — enabling them to speak effectively in speeches, debates, presentations and everyday conversations.</p>
+      </div>
+      <div class="what-learn">
+        <div class="what-learn-title">What Your Child Will Learn</div>
+        <div class="learn-grid">
+          <div class="learn-item">Confident English Speaking</div>
+          <div class="learn-item">Public Speaking & Stage Confidence</div>
+          <div class="learn-item">Speeches, Debates & Presentations</div>
+          <div class="learn-item">Practical Grammar for Real Communication</div>
+          <div class="learn-item">Articulation & Voice Modulation</div>
+          <div class="learn-item">Personality & Confidence Development</div>
+          <div class="learn-item">Creative Writing & Storytelling</div>
+          <div class="learn-item">Interview & Presentation Skills</div>
+        </div>
+      </div>
+      <p>🎯 I train students to begin their speech with confidence, clarity, and strong impact — helping them capture attention from the very first sentence.</p>
+      <div class="parent-cta">Free Demo Class Available</div>
+      <p>If you would like your child to speak confidently and stand out, feel free to connect.</p>
+      <div class="sign">
+        <p>Warm regards,</p>
+        <em>Adv. Ritu Khera (LL.M)</em>
+        <p>English Public Speaking Expert</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section class="credentials">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-h2">Degrees, certifications, <em>conviction.</em></h2>
+    <div class="cred-grid">
+      <div class="cred-card"><span class="cred-icon">🎓</span><div class="cred-text">LL.M, LL.B, B.Ed., B.A. (Delhi University)</div></div>
+      <div class="cred-card"><span class="cred-icon">🏅</span><div class="cred-text">Certified TESOL Professional (IAO, 2024)</div></div>
+      <div class="cred-card"><span class="cred-icon">👥</span><div class="cred-text">200+ Students Trained · 600+ Taught</div></div>
+      <div class="cred-card"><span class="cred-icon">⚖️</span><div class="cred-text">Advocate, Supreme Court & District Courts</div></div>
+      <div class="cred-card"><span class="cred-icon">🎙️</span><div class="cred-text">English Public Speaking Expert</div></div>
+      <div class="cred-card"><span class="cred-icon">❤️</span><div class="cred-text">President, National Human Rights Org.</div></div>
+      <div class="cred-card"><span class="cred-icon">💼</span><div class="cred-text">PlanetSpark · Preply · Superprof Coach</div></div>
+      <div class="cred-card"><span class="cred-icon">📚</span><div class="cred-text">30+ Years of Teaching Expertise</div></div>
+    </div>
+  </section>
+
+  <!-- Philosophy quote -->
+  <section class="philosophy-quote">
+    <div class="section-label" style="text-align:center;margin-bottom:2rem">Teaching Philosophy</div>
+    <blockquote>"Confidence is not born. It is built — one word, one sentence, one brave moment at a time."</blockquote>
+    <div class="divider"></div>
+    <cite>— Adv. Ritu Khera</cite>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline">
+    <div class="section-label">The Journey</div>
+    <h2 class="section-h2">From classroom to courtroom — <em>and back.</em></h2>
+    <div class="timeline-items">
+      <div class="timeline-item">
+        <div class="timeline-year">1991</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>First classroom</h3>
+          <p>Began teaching English & Social Studies at Happy Model School, Kirti Nagar — educating 600+ students in two formative years.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1994</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>B.Ed. — Annamalai University</h3>
+          <p>Formal teacher training to deepen pedagogy in language and child development.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2016</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Advocate, Supreme Court & District Courts</h3>
+          <p>Began legal practice. Sharpened persuasive speaking, articulation, and stage command — the very skills now taught to children.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2017</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Triple Talaq Case</h3>
+          <p>Contributed alongside the legal team advocating for Muslim women's rights — a landmark Supreme Court matter.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>President, National Human Rights Organisation</h3>
+          <p>Led initiatives supporting 500+ underprivileged individuals through legal awareness and education programs.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Master of Laws (LL.M)</h3>
+          <p>Completed LL.M from Swami Vivekanand University — strengthening expertise in legal research and analysis.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Public Speaking & Communication Coach</h3>
+          <p>Began full-time coaching at PlanetSpark, Preply and Superprof — training 200+ students in confident English speaking.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Certified TESOL Professional</h3>
+          <p>International TESOL certification (IAO) — formalising 30+ years of English-teaching mastery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /about -->
+
+
+<!-- ══════════════════════════════════════════
+     COURSES PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-courses">
+
+  <section class="courses-hero">
+    <div class="section-label">The Programs</div>
+    <h1 class="courses-hero" style="font-family:var(--serif);font-size:clamp(3rem,6vw,5rem);font-weight:500;line-height:1.05">Four programs.<br><em style="font-style:italic;color:var(--gold)">One</em> transformed you.</h1>
+    <p style="max-width:600px;color:var(--muted);font-size:0.92rem;margin-top:1.5rem;line-height:1.9">Each program is hand-built, small-batch, and deeply personal. Choose by what you need today — switch later if you like. Most students take more than one.</p>
+  </section>
+
+  <!-- Program 01 -->
+  <div class="program">
+    <div class="program-content">
+      <div class="program-num"><span class="icon">🎤</span> PROGRAM 01</div>
+      <div class="program-title">Public Speaking</div>
+      <div class="program-tagline">From stage fright to standing ovations.</div>
+      <div class="program-desc">Master the art of speaking with presence — body language, pace, pause, projection and the courage to hold a room. Designed for school students, college students and professionals who want their words to land.</div>
+      <div class="program-meta">
+        <div class="meta-item">
+          <div>
+            <span class="meta-label">Duration</span>
+            <span class="meta-value">12 weeks · 24 sessions</span>
+          </div>
+        </div>
+        <div class="meta-item">
+          <div>
+            <span class="meta-label">Audience</span>
+            <span class="meta-value">Age 10 to 60+</span>
+          </div>
+        </div>
+      </div>
+      <div class="program-features">
+        <div class="feature">Speak confidently to any audience size</div>
+        <div class="feature">Build a personal speaking style</div>
+        <div class="feature">Handle Q&A, panels and impromptu moments</div>
+        <div class="feature">Voice modulation and stage presence</div>
+      </div>
+      <button class="btn-gold" onclick="openModal()">BOOK A FREE DEMO ↗</button>
+    </div>
+    <div class="program-img">
+      <div class="placeholder-img" style="height:100%;min-height:400px">[ Add course image ]</div>
+    </div>
+  </div>
+
+  <!-- Program 02 -->
+  <div class="program reverse">
+    <div class="program-img">
+      <div class="placeholder-img" style="height:100%;min-height:400px">[ Add course image ]</div>
+    </div>
+    <div class="program-content">
+      <div class="program-num"><span class="icon">🍽️</span> PROGRAM 02</div>
+      <div class="program-title">Table Manners & Etiquette</div>
+      <div class="program-tagline">Compose yourself at any table, anywhere in the world.</div>
+      <div class="program-desc">A signature program that goes beyond cutlery — learn poise, posture, dining grace, conversation etiquette, host and guest decorum. Perfect for children stepping into society and adults preparing for global rooms.</div>
+      <div class="program-meta">
+        <div class="meta-item">
+          <div>
+            <span class="meta-label">Duration</span>
+            <span class="meta-value">6 weeks · workshops</span>
+          </div>
+        </div>
+        <div class="meta-item">
+          <div>
+            <span class="meta-label">Audience</span>
+            <span class="meta-value">Age 8 to adult</span>
+          </div>
+        </div>
+      </div>
+      <div class="program-features">
+        <div class="feature">Master Continental, Indian and casual settings</div>
+        <div class="feature">Confident host & guest behaviour</div>
+        <div class="feature">Social conversation skills</div>
+        <div class="feature">Personal grooming guidance</div>
+      </div>
+      <button class="btn-gold" onclick="openModal()">BOOK A FREE DEMO ↗</button>
+    </div>
+  </div>
+
+  <!-- Program 03 -->
+  <div class="program">
+    <div class="program-content">
+      <div class="program-num"><span class="icon">📖</span> PROGRAM 03</div>
+      <div class="program-title">Basic Grammar (CBSE)</div>
+      <div class="program-tagline">Tense, voice, narration — finally clear.</div>
+      <div class="program-desc">A structured, exam-focused program for CBSE students from Class 6 to 12. We rebuild the fundamentals — tenses, voice, narration, modals, error spotting, editing, and writing — with worksheets, mock papers and personal feedback.</div>
+      <div class="program-meta">
+        <div class="meta-item">
+          <div>
+            <span class="meta-label">Duration</span>
+            <span class="meta-value">School year · weekly</span>
+          </div>
+        </div>
+        <div class="meta-item">
+          <div>
+            <span class="meta-label">Audience</span>
+            <span class="meta-value">CBSE Class 6–12</span>
+          </div>
+        </div>
+      </div>
+      <div class="program-features">
+        <div class="feature">Score 90+ in English Boards</div>
+        <div class="feature">Crystal-clear grammar fundamentals</div>
+        <div class="feature">Writing skills: essays, letters, articles</div>
+        <div class="feature">Reading comprehension mastery</div>
+      </div>
+      <button class="btn-gold" onclick="openModal()">BOOK A FREE DEMO ↗</button>
+    </div>
+    <div class="program-img">
+      <div class="placeholder-img" style="height:100%;min-height:400px">[ Add course image ]</div>
+    </div>
+  </div>
+
+  <!-- Program 04 -->
+  <div class="program reverse">
+    <div class="program-img">
+      <div class="placeholder-img" style="height:100%;min-height:400px">[ Add course image ]</div>
+    </div>
+    <div class="program-content">
+      <div class="program-num"><span class="icon">💼</span> PROGRAM 04</div>
+      <div class="program-title">Interview Preparation</div>
+      <div class="program-tagline">Walk in nervous. Walk out hired.</div>
+      <div class="program-desc">An intensive, role-specific coaching program for working professionals and MBA aspirants. Includes resume polish, mock interviews, HR & technical rounds, behavioural questions, accent neutralisation and post-mock detailed feedback.</div>
+      <div class="program-meta">
+        <div class="meta-item">
+          <div>
+            <span class="meta-label">Duration</span>
+            <span class="meta-value">4–8 weeks · intensive</span>
+          </div>
+        </div>
+        <div class="meta-item">
+          <div>
+            <span class="meta-label">Audience</span>
+            <span class="meta-value">Professionals & PG aspirants</span>
+          </div>
+        </div>
+      </div>
+      <div class="program-features">
+        <div class="feature">Crack HR, technical and case rounds</div>
+        <div class="feature">Confident, structured answers</div>
+        <div class="feature">Strong body language on camera & in-person</div>
+        <div class="feature">LinkedIn & resume polish included</div>
+      </div>
+      <button class="btn-gold" onclick="openModal()">BOOK A FREE DEMO ↗</button>
+    </div>
+  </div>
+
+</div><!-- /courses -->
+
+
+<!-- ══════════════════════════════════════════
+     REVIEWS PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-reviews">
+
+  <section class="reviews-hero">
+    <div class="section-label">What They Say</div>
+    <h1 class="reviews-hero" style="font-family:var(--serif);font-size:clamp(3rem,5vw,4.5rem);font-weight:500;line-height:1.1">Words from those<br>who <em style="font-style:italic;color:var(--gold)">found theirs.</em></h1>
+    <div class="reviews-filter">
+      <button class="filter-btn">ALL</button>
+      <button class="filter-btn outline">PARENTS</button>
+      <button class="filter-btn outline">STUDENTS</button>
+      <button class="filter-btn outline">PROFESSIONALS</button>
+    </div>
+  </section>
+
+  <div class="all-reviews" id="reviewsContainer">
+    <div class="review-full">
+      <div class="stars">★★★★★</div>
+      <div class="text">"My daughter went from refusing to speak in class to winning the school debate. Ritu ma'am's method is unlike anything else we've tried."</div>
+      <div class="author">Priya Sharma</div>
+      <div class="course-tag">Public Speaking · Parent</div>
+    </div>
+    <div class="review-full">
+      <div class="stars">★★★★★</div>
+      <div class="text">"The interview preparation program got me my dream job. The mock sessions and feedback were incredibly detailed and honest."</div>
+      <div class="author">Arjun Mehta</div>
+      <div class="course-tag">Interview Preparation · Professional</div>
+    </div>
+    <div class="review-full">
+      <div class="stars">★★★★★</div>
+      <div class="text">"CBSE grammar finally clicked for my son. His board exam scores improved dramatically after just 8 weeks with Ritu ma'am."</div>
+      <div class="author">Sunita Verma</div>
+      <div class="course-tag">Basic Grammar · Parent</div>
+    </div>
+  </div>
+
+  <!-- LEAVE A REVIEW -->
+  <section class="leave-review">
+    <div class="inner">
+      <div class="section-label">Share Your Experience</div>
+      <h2>Leave a <em>review</em></h2>
+      <p>Your words help other families find the confidence they're looking for.</p>
+      <form class="review-form" onsubmit="submitReview(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="r-name" placeholder="Priya Sharma" required/>
+          </div>
+          <div class="form-group">
+            <label>Program</label>
+            <select id="r-program">
+              <option value="Public Speaking">Public Speaking</option>
+              <option value="Table Manners & Etiquette">Table Manners & Etiquette</option>
+              <option value="Basic Grammar (CBSE)">Basic Grammar (CBSE)</option>
+              <option value="Interview Preparation">Interview Preparation</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your Rating</label>
+          <div class="star-rating">
+            <input type="radio" id="s5" name="rating" value="5"/><label for="s5">★</label>
+            <input type="radio" id="s4" name="rating" value="4"/><label for="s4">★</label>
+            <input type="radio" id="s3" name="rating" value="3"/><label for="s3">★</label>
+            <input type="radio" id="s2" name="rating" value="2"/><label for="s2">★</label>
+            <input type="radio" id="s1" name="rating" value="1"/><label for="s1">★</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your Review</label>
+          <textarea id="r-text" placeholder="Share what changed for your child or yourself..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>I am a</label>
+          <select id="r-type">
+            <option>Parent</option>
+            <option>Student</option>
+            <option>Professional</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-gold" style="width:fit-content">SUBMIT REVIEW →</button>
+        <div class="success-msg" id="reviewSuccess">
+          <h3>Thank you! 🙏</h3>
+          <p>Your review has been received. It will appear after a quick verification.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</div><!-- /reviews -->
+
+
+<!-- ══════════════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-page">
+    <div class="contact-left">
+      <div class="section-label">Reach Out</div>
+      <h1>Let's start a <em>conversation.</em></h1>
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <span class="icon">✉️</span>
+          <p><strong>Email</strong>ritukhera27@gmail.com</p>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon">📞</span>
+          <p><strong>Phone / WhatsApp</strong>+91 98717 63264</p>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon">📍</span>
+          <p><strong>Location</strong>Gurgaon, India · Online worldwide</p>
+        </div>
+      </div>
+      <div class="contact-socials">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <h2>Send a message</h2>
+      <p>We respond within 24 hours.</p>
+      <form class="contact-form" onsubmit="submitContact(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Aanya Mehra" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" placeholder="+91 98xxx xxxxx"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="you@example.com" required/>
+        </div>
+        <div class="form-group">
+          <label>Interested In</label>
+          <select>
+            <option>Public Speaking</option>
+            <option>Table Manners & Etiquette</option>
+            <option>Basic Grammar (CBSE)</option>
+            <option>Interview Preparation</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your child or what you'd like to work on..." style="min-height:120px"></textarea>
+        </div>
+        <button type="submit" class="btn-gold">SEND MESSAGE →</button>
+        <div class="success-msg" id="contactSuccess">
+          <h3>Message sent! ✓</h3>
+          <p>We'll be in touch within 24 hours.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div><!-- /contact -->
+
+
+<!-- FOOTER (shown on all pages) -->
+<footer id="siteFooter">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--white)">Voice<span style="color:var(--gold)">&</span>Verve</div>
+      <div class="tagline">Speak <em>bravely.</em><br>Live <em>freely.</em></div>
+      <a href="#" class="footer-book" onclick="openModal()">🎁 BOOK A FREE DEMO →</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Explore</div>
+      <ul>
+        <li><a href="#" onclick="showPage('about')">About</a></li>
+        <li><a href="#" onclick="showPage('courses')">Courses</a></li>
+        <li><a href="#" onclick="showPage('reviews')">Reviews</a></li>
+        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Reach Out</div>
+      <div class="footer-contact">
+        <p>✉️ ritukhera27@gmail.com</p>
+        <p>📞 +91 98717 63264</p>
+        <p style="font-size:0.8rem">Gurgaon, India · Online worldwide</p>
+      </div>
+      <div class="footer-socials">
+        <a href="#">in</a>
+        <a href="#">ig</a>
+        <a href="#">yt</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Voice & Verve by Adv. Ritu Khera (LL.M). Crafted with care.</p>
+    <span class="values">CONFIDENCE · CLARITY · CHARACTER</span>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     FREE DEMO MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-left">
+      <div>
+        <span class="star-icon">✦</span>
+        <div class="complimentary">Complimentary</div>
+        <h2>30 minutes that <em>change</em> the way you speak.</h2>
+      </div>
+      <ul class="modal-perks">
+        <li>Live 1-on-1 session</li>
+        <li>Voice & confidence audit</li>
+        <li>Personalised roadmap</li>
+      </ul>
+    </div>
+    <div class="modal-right">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="free-label">Free Demo</div>
+      <h3>Tell us about you</h3>
+      <form class="modal-form" onsubmit="submitDemo(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Aanya Mehra" required/>
+        </div>
+        <div class="modal-form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" placeholder="+91 98xxx xxxxx"/>
+          </div>
+        </div>
+        <div class="modal-form-row">
+          <div class="form-group">
+            <label>I Am A</label>
+            <select>
+              <option>Parent (for my child)</option>
+              <option>Student (under 18)</option>
+              <option>Professional</option>
+              <option>Adult learner</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Interested In</label>
+            <select>
+              <option>Public Speaking</option>
+              <option>Table Manners & Etiquette</option>
+              <option>Basic Grammar (CBSE)</option>
+              <option>Interview Preparation</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>A line about you (optional)</label>
+          <input type="text" placeholder="What would you like to work on?"/>
+        </div>
+        <button type="submit" class="claim-btn">CLAIM MY FREE DEMO</button>
+        <p class="modal-note">No spam. We respond within 24 hours.</p>
+        <div class="success-msg" id="demoSuccess">
+          <h3>You're booked! 🎉</h3>
+          <p>We'll WhatsApp you within 24 hours to confirm your session.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// ── PAGE ROUTING ──
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const navEl=document.getElementById('nav-'+page);
+  if(navEl)navEl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── MODAL ──
+function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow=''}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal()}
+
+// ── FORMS ──
+function submitDemo(e){
+  e.preventDefault();
+  document.getElementById('demoSuccess').classList.add('show');
+  e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+}
+function submitReview(e){
+  e.preventDefault();
+  const name=document.getElementById('r-name').value;
+  const program=document.getElementById('r-program').value;
+  const text=document.getElementById('r-text').value;
+  const type=document.getElementById('r-type').value;
+  const rating=document.querySelector('input[name="rating"]:checked');
+  const stars=rating?parseInt(rating.value):5;
+  const starStr='★'.repeat(stars)+'☆'.repeat(5-stars);
+  const card=document.createElement('div');
+  card.className='review-full';
+  card.innerHTML=`<div class="stars">${starStr}</div><div class="text">"${text}"</div><div class="author">${name}</div><div class="course-tag">${program} · ${type}</div>`;
+  document.getElementById('reviewsContainer').prepend(card);
+  document.getElementById('reviewSuccess').classList.add('show');
+  e.target.reset();
+  setTimeout(()=>document.getElementById('reviewSuccess').classList.remove('show'),4000);
+}
+function submitContact(e){
+  e.preventDefault();
+  document.getElementById('contactSuccess').classList.add('show');
+  e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+}
+
+// ── MOBILE MENU ──
+function toggleMobileMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+// ── KEYBOARD ──
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
