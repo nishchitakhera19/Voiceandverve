@@ -202,7 +202,7 @@ nav.scrolled{background:rgba(13,15,26,0.98)}
 .btn-ghost{color:var(--white);font-family:var(--sans);font-size:0.8rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;display:flex;align-items:center;gap:0.4rem;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;transition:border-color 0.2s,color 0.2s}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 .hero-img-wrap{position:relative;animation:fadeSlideUp 0.8s 0.4s both}
-.hero-img-wrap img,.hero-img-wrap .placeholder-img{width:100%;height:600px;object-fit:cover;display:block;transition:transform 0.6s ease}
+.hero-img-wrap img,.hero-img-wrap .placeholder-img{width:100%;height:auto;object-fit:contain;display:block;transition:transform 0.6s ease}
 .hero-img-wrap:hover img,.hero-img-wrap:hover .placeholder-img{transform:scale(1.02)}
 .hero-badge{position:absolute;bottom:1.5rem;right:1.5rem;background:var(--gold);padding:1.1rem 1.3rem;color:#000;animation:fadeSlideUp 0.8s 0.8s both}
 .hero-badge .num{font-family:var(--serif);font-size:2.2rem;font-weight:600;display:block;line-height:1}
@@ -323,7 +323,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
 /* ── ABOUT PAGE ── */
 .about-hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px);padding:5rem 3rem;gap:5rem;align-items:center}
 .about-img-wrap{position:relative}
-.about-img-wrap img,.about-img-wrap .placeholder-img{width:100%;height:640px;object-fit:cover}
+.about-img-wrap img,.about-img-wrap .placeholder-img{width:100%;height:auto;object-fit:contain}
 .about-badge{position:absolute;top:1.5rem;right:-1.5rem;background:var(--navy2);border:1px solid var(--border);padding:1.3rem 1.6rem}
 .about-badge .num{font-family:var(--serif);font-size:2.1rem;font-weight:600;display:block;color:var(--white);line-height:1}
 .about-badge .lbl{font-family:var(--sans);font-size:0.62rem;letter-spacing:0.17em;text-transform:uppercase;color:var(--muted);display:block;margin-top:0.3rem}
@@ -521,7 +521,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
   .burger{display:flex}
   .hero,.about-hero,.contact-page{grid-template-columns:1fr}
   .hero-img-wrap{display:block}
-  .hero-img-wrap img{height:380px;object-position:top}
+  .hero-img-wrap img{height:auto;object-position:top center}
   .stats{grid-template-columns:1fr 1fr}
   .stat{border-right:none;border-bottom:1px solid var(--border)}
   .courses-grid{grid-template-columns:1fr}
@@ -627,7 +627,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
         3. Recommended size: 800×1000px portrait, high resolution
         ══════════════════════════════════════════════════
       -->
-      <img src="ritu.jpeg" alt="Adv. Ritu Khera" style="width:100%;height:700px;object-fit:cover;object-position:top;display:block"/>
+      <img src="ritu.jpeg" alt="Adv. Ritu Khera" style="width:100%;height:auto;max-height:100%;object-fit:contain;object-position:top center;display:block;background:var(--navy2)"/>
       <div class="hero-badge">
         <span class="num">20+</span>
         <span class="lbl">Years of Impact</span>
@@ -800,7 +800,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
         Use a 3:4 portrait crop. JPG/WebP preferred.
         ══════════════════════════════════════════════════
       -->
-      <img src="ritu.jpeg" alt="Adv. Ritu Khera" style="width:100%;height:640px;object-fit:cover;object-position:top;display:block"/>
+      <img src="ritu.jpeg" alt="Adv. Ritu Khera" style="width:100%;height:auto;object-fit:contain;object-position:top center;display:block;background:var(--navy2)"/>
       <div class="about-badge" style="bottom:0;left:0;right:auto;top:auto;background:var(--gold)">
         <span class="num" style="color:#000">20+</span>
         <span class="lbl" style="color:rgba(0,0,0,0.7)">Years Teaching</span>
