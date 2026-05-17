@@ -245,7 +245,7 @@ nav.scrolled{background:rgba(13,15,26,0.98)}
 .course-card:hover::before{opacity:1}
 .course-card:hover .course-icon{transform:scale(1.2) rotate(-5deg)}
 .course-card-body{padding:3rem 3rem 2rem;position:relative;z-index:2;flex:1}
-.course-card-img{width:100%;height:200px;position:relative;overflow:hidden;flex-shrink:0}
+.course-card-img{width:100%;height:280px;position:relative;overflow:hidden;flex-shrink:0}
 .course-card-img .card-img-placeholder{
   width:100%;height:100%;
   background:linear-gradient(110deg,#0d0f1a 30%,#171a2a 50%,#0d0f1a 70%);
@@ -266,12 +266,13 @@ nav.scrolled{background:rgba(13,15,26,0.98)}
 .course-card-img .card-img-placeholder .ph-line.r{right:16px}
 .course-card:hover .course-card-img .card-img-placeholder{background:linear-gradient(110deg,#12141f 30%,#1e2035 50%,#12141f 70%);background-size:200% 100%;animation:shimmer 1.8s linear infinite}
 
-/* ── PROGRAM — vertical stack layout ── */
-.program{display:flex;flex-direction:column;border-top:1px solid var(--border);overflow:hidden}
-.program.reverse{flex-direction:column}
-.program-content{padding:4rem 4.5rem 3rem;background:var(--navy2);transition:background 0.3s}
+/* ── PROGRAM — side by side alternating layout ── */
+.program{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);overflow:hidden;min-height:520px}
+.program.reverse{direction:rtl}
+.program.reverse .program-content,.program.reverse .program-img{direction:ltr}
+.program-content{padding:4rem 4.5rem 3rem;background:var(--navy2);transition:background 0.3s;display:flex;flex-direction:column;justify-content:center}
 .program:hover .program-content{background:var(--navy3)}
-.program-img{overflow:hidden;position:relative;height:360px;flex-shrink:0}
+.program-img{overflow:hidden;position:relative;height:100%;min-height:520px;flex-shrink:0}
 .program-img img,.program-img .placeholder-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
 .program:hover .program-img img,.program:hover .program-img .course-img-placeholder{transform:scale(1.02)}
 .course-icon{font-size:1.6rem;color:var(--gold);margin-bottom:1.8rem;display:block;transition:transform 0.3s}
@@ -524,7 +525,9 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
   .stat{border-right:none;border-bottom:1px solid var(--border)}
   .courses-grid{grid-template-columns:1fr}
   .program,.program.reverse{flex-direction:column}
-  .program-img{height:240px}
+  .program{grid-template-columns:1fr;min-height:unset}
+  .program.reverse{direction:ltr}
+  .program-img{height:280px;min-height:280px}
   .program-content{padding:2.5rem 2rem}
   .reviews-grid,.all-reviews{grid-template-columns:1fr}
   .cred-grid{grid-template-columns:1fr 1fr}
@@ -688,12 +691,12 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
       <div class="course-card reveal reveal-delay-1" onclick="showPage('courses')">
         <div class="course-card-body">
           <span class="course-icon">🍽️</span>
-          <div class="course-title">Table Manners & Etiquettes</div>
+          <div class="course-title">Table Manners & Etiquette</div>
           <div class="course-sub">Compose yourself at any table, anywhere in the world with grace and poise.</div>
           <a href="#" class="learn-more" onclick="showPage('courses');return false">LEARN MORE →</a>
         </div>
         <div class="course-card-img">
-          <img src="tablemanners.jpeg" alt="Table Manners & Etiquettes" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          <img src="tablemanners.jpeg" alt="Table Manners & Etiquette" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
       </div>
       <div class="course-card reveal reveal-delay-2" onclick="showPage('courses')">
@@ -930,10 +933,10 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
     </div>
   </div>
 
-  <div class="program reveal">
+  <div class="program reverse reveal">
     <div class="program-content">
       <div class="program-num"><span class="icon">🍽️</span> PROGRAM 02</div>
-      <div class="program-title">Table Manners & Etiquettes</div>
+      <div class="program-title">Table Manners & Etiquette</div>
       <div class="program-tagline">Compose yourself at any table, anywhere in the world.</div>
       <div class="program-desc">A signature program that goes beyond cutlery — learn poise, posture, dining grace, conversation etiquette, host and guest decorum. Perfect for children stepping into society and adults preparing for global rooms.</div>
       <div class="program-meta">
@@ -949,7 +952,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
       <button class="btn-gold" onclick="openModal()">BOOK A FREE DEMO ↗</button>
     </div>
     <div class="program-img">
-      <img src="tablemanners.jpeg" alt="Table Manners & Etiquettes" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)"/>
+      <img src="tablemanners.jpeg" alt="Table Manners & Etiquette" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)"/>
     </div>
   </div>
 
@@ -976,7 +979,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
     </div>
   </div>
 
-  <div class="program reveal">
+  <div class="program reverse reveal">
     <div class="program-content">
       <div class="program-num"><span class="icon">💼</span> PROGRAM 04</div>
       <div class="program-title">Interview Preparation</div>
@@ -1052,7 +1055,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
             <label>Program</label>
             <select id="r-program">
               <option value="Public Speaking">Public Speaking</option>
-              <option value="Table Manners &amp; Etiquettes">Table Manners &amp; Etiquettes</option>
+              <option value="Table Manners &amp; Etiquette">Table Manners &amp; Etiquette</option>
               <option value="Basic Grammar (CBSE)">Basic Grammar (CBSE)</option>
               <option value="Interview Preparation">Interview Preparation</option>
             </select>
@@ -1135,7 +1138,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
           <label>Interested In</label>
           <select>
             <option>Public Speaking</option>
-            <option>Table Manners &amp; Etiquettes</option>
+            <option>Table Manners &amp; Etiquette</option>
             <option>Basic Grammar (CBSE)</option>
             <option>Interview Preparation</option>
             <option>General Enquiry</option>
@@ -1241,7 +1244,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
             <label>Interested In</label>
             <select id="demo-interest">
               <option>Public Speaking</option>
-              <option>Table Manners &amp; Etiquettes</option>
+              <option>Table Manners &amp; Etiquette</option>
               <option>Basic Grammar (CBSE)</option>
               <option>Interview Preparation</option>
             </select>
