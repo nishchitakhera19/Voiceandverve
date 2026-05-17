@@ -113,20 +113,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--sans);font-weig
 .hero-placeholder .img-corner.bl{bottom:24px;left:24px;border-width:0 0 1px 1px}
 .hero-placeholder .img-corner.br{bottom:24px;right:24px;border-width:0 1px 1px 0}
 
-/* ── HERO TEXT SIDE MINI PLACEHOLDER ── */
-.hero-text-img{
-  width:180px;height:220px;flex-shrink:0;
-  background:linear-gradient(110deg,#12141f 30%,#1e2035 50%,#12141f 70%);
-  background-size:200% 100%;
-  animation:shimmer 2.8s linear infinite;
-  position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.6rem;overflow:hidden;
-}
-.hero-text-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,160,23,0.08) 0%,transparent 70%)}
-.hero-text-img .img-icon{font-size:2rem;opacity:0.28;animation:iconFloat 3.5s ease-in-out infinite;position:relative;z-index:1}
-.hero-text-img .img-label{font-family:var(--sans);font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(212,160,23,0.35);position:relative;z-index:1;text-align:center;padding:0 0.5rem}
-.hero-text-img .img-corner{position:absolute;width:40px;height:40px;border-color:rgba(212,160,23,0.2);border-style:solid}
-.hero-text-img .img-corner.tl{top:12px;left:12px;border-width:1px 0 0 1px}
-.hero-text-img .img-corner.br{bottom:12px;right:12px;border-width:0 1px 1px 0}
+
 
 /* ── SOCIAL ICON BUTTONS ── */
 .social-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--border);text-decoration:none;transition:all 0.2s;color:var(--muted);border-radius:2px}
