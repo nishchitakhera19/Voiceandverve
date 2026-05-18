@@ -181,41 +181,37 @@ function submitContact(e){
 function loadApprovedReviews(){
   const container=document.getElementById('reviewsContainer');
   if(!container)return;
-  fetch(SHEET_URL+'?action=getReviews',{method:'GET',mode:'no-cors'}).catch(()=>{});
-  // Use no-cors workaround — fetch via script tag trick
-  const script=document.createElement('script');
-  const callbackName='reviewsCallback_'+Date.now();
-  window[callbackName]=function(reviews){
-    if(!reviews||!reviews.length)return;
+  // Show loading state
+  container.innerHTML='<p style="color:var(--muted);text-align:center;padding:2rem;font-family:var(--sans)">Loading reviews...</p>';
+  fetch(SHEET_URL,{
+    method:'GET',
+    headers:{'Content-Type':'text/plain'}
+  })
+  .then(r=>{
+    if(!r.ok)throw new Error('Network error');
+    return r.json();
+  })
+  .then(reviews=>{
+    if(!reviews||!reviews.length){
+      container.innerHTML='<p style="color:var(--muted);text-align:center;padding:2rem;font-family:var(--sans)">No reviews yet.</p>';
+      return;
+    }
     container.innerHTML='';
     reviews.forEach(r=>{
-      const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
+      const starsNum=Number(r.stars)||5;
+      const stars='★'.repeat(starsNum)+'☆'.repeat(5-starsNum);
       const card=document.createElement('div');
       card.className='review-full reveal';
       card.dataset.type=(r.type||'').toLowerCase();
       card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
       container.appendChild(card);
     });
-    document.removeChild(script);
-    delete window[callbackName];
-  };
-  // Direct fetch approach
-  fetch(SHEET_URL)
-    .then(r=>r.json())
-    .then(reviews=>{
-      if(!reviews||!reviews.length)return;
-      container.innerHTML='';
-      reviews.forEach(r=>{
-        const stars='★'.repeat(Number(r.stars)||5)+'☆'.repeat(5-(Number(r.stars)||5));
-        const card=document.createElement('div');
-        card.className='review-full reveal';
-        card.dataset.type=(r.type||'').toLowerCase();
-        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
-        container.appendChild(card);
-      });
-    }).catch(()=>{});
+  })
+  .catch(err=>{
+    console.error('Reviews fetch error:',err);
+    container.innerHTML='<p style="color:var(--muted);text-align:center;padding:2rem;font-family:var(--sans)">Unable to load reviews right now.</p>';
+  });
 }
-// Only run on reviews page
 if(document.getElementById('reviewsContainer')){
   loadApprovedReviews();
 }
