@@ -6,8 +6,8 @@
 
 <!-- ── PRIMARY SEO ── -->
 <title>Voice & Verve | English Speaking & Public Speaking Classes for Kids | Adv. Ritu Khera</title>
-<meta name="description" content="Help your child speak English with confidence. Voice & Verve by Adv. Ritu Khera — TESOL certified English & Public Speaking coach with 20+ years experience. Online classes for kids, CBSE students & professionals. Book a free demo today!"/>
-<meta name="keywords" content="English speaking classes for kids, public speaking classes Gurgaon, English tutor online India, CBSE English coaching, confidence building kids, spoken English classes Delhi NCR, interview preparation coaching, table manners etiquette classes, Ritu Khera, Voice and Verve"/>
+<meta name="description" content="Help your child speak English with confidence. Voice & Verve by Adv. Ritu Khera — TESOL certified English & Public Speaking coach with 20+ years experience. Online classes for kids, students of all boards & professionals. Book a free demo today!"/>
+<meta name="keywords" content="English speaking classes for kids, public speaking classes Gurgaon, English tutor online India, English grammar coaching all boards, CBSE ICSE IB English tutor, confidence building kids, spoken English classes Delhi NCR, interview preparation coaching, table manners etiquette classes, Ritu Khera, Voice and Verve, English classes for children, public speaking coach Delhi, online English tutor India, spoken English for kids, grammar classes for children, interview coaching Gurgaon, English fluency classes, communication skills for kids, personality development classes"/>
 <meta name="author" content="Adv. Ritu Khera"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://voiceandverve.in"/>
@@ -17,7 +17,7 @@
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://voiceandverve.in"/>
 <meta property="og:title" content="Voice & Verve | English & Public Speaking Classes | Adv. Ritu Khera"/>
-<meta property="og:description" content="Help your child speak English with confidence. TESOL certified coach with 20+ years experience. Public Speaking, CBSE Grammar, Table Manners & Interview Prep. Free demo available!"/>
+<meta property="og:description" content="Help your child speak English with confidence. TESOL certified coach with 20+ years experience. Public Speaking, English Grammar, Table Manners & Interview Prep. Free demo available!"/>
 <meta property="og:image" content="https://voiceandverve.in/ritu.jpeg"/>
 <meta property="og:locale" content="en_IN"/>
 <meta property="og:site_name" content="Voice & Verve"/>
@@ -47,7 +47,7 @@
     "name": "Adv. Ritu Khera",
     "jobTitle": "English Public Speaking Expert & TESOL Certified Educator",
     "description": "LL.M, TESOL Certified, Advocate Supreme Court of India, 20+ years teaching experience",
-    "knowsAbout": ["English Language Teaching", "Public Speaking", "CBSE English", "Interview Preparation", "Table Manners"]
+    "knowsAbout": ["English Language Teaching", "Public Speaking", "English all boards", "Interview Preparation", "Table Manners"]
   },
   "address": {
     "@type": "PostalAddress",
@@ -74,7 +74,7 @@
       },
       {
         "@type": "Course",
-        "name": "Basic Grammar (CBSE)",
+        "name": "Basic English Grammar",
         "description": "Structured exam-focused English grammar for CBSE Class 4-10 students.",
         "provider": {"@type": "Organization", "name": "Voice & Verve"}
       },
@@ -531,7 +531,16 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
 .star-rating label:hover{transform:scale(1.2)}
 .form-note{font-size:0.8rem;color:var(--muted)}
 
-/* ── CONTACT PAGE ── */
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden}
+.faq-q{width:100%;background:none;border:none;color:var(--white);font-family:var(--sans);font-size:1rem;font-weight:500;letter-spacing:0.02em;padding:1.5rem 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:1rem;transition:color 0.2s}
+.faq-q:hover{color:var(--gold)}
+.faq-q.open{color:var(--gold)}
+.faq-icon{font-size:1.4rem;flex-shrink:0;transition:transform 0.3s;color:var(--gold)}
+.faq-q.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
+.faq-a.open{max-height:300px;padding-bottom:1.5rem}
+.faq-a p{font-family:var(--sans);font-size:0.9rem;line-height:1.8;color:var(--muted)}
 .contact-page{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px)}
 .contact-left{padding:7rem 4.5rem;background:var(--navy2);display:flex;flex-direction:column;justify-content:center}
 .contact-left h1{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.3rem);font-weight:500;margin-bottom:2.2rem;line-height:1.08}
@@ -678,6 +687,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
     <li><a href="#" id="nav-about" onclick="showPage('about');return false">About</a></li>
     <li><a href="#" id="nav-courses" onclick="showPage('courses');return false">Courses</a></li>
     <li><a href="#" id="nav-reviews" onclick="showPage('reviews');return false">Reviews</a></li>
+    <li><a href="#" id="nav-faq" onclick="showPage('faq');return false">FAQ</a></li>
     <li><a href="#" id="nav-contact" onclick="showPage('contact');return false">Contact</a></li>
   </ul>
   <button class="nav-cta" onclick="openModal()">Free Demo ↗</button>
@@ -693,6 +703,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
   <a href="#" onclick="showPage('about');toggleMobileMenu();return false">About</a>
   <a href="#" onclick="showPage('courses');toggleMobileMenu();return false">Courses</a>
   <a href="#" onclick="showPage('reviews');toggleMobileMenu();return false">Reviews</a>
+  <a href="#" onclick="showPage('faq');toggleMobileMenu();return false">FAQ</a>
   <a href="#" onclick="showPage('contact');toggleMobileMenu();return false">Contact</a>
   <a href="#" class="gold" onclick="openModal();toggleMobileMenu();return false">🎁 Book Free Demo →</a>
 </div>
@@ -739,13 +750,13 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
       <span class="marquee-item">Public Speaking</span>
       <span class="marquee-item">Confidence Building</span>
       <span class="marquee-item">Table Manners</span>
-      <span class="marquee-item">CBSE Grammar</span>
+      <span class="marquee-item">English Grammar</span>
       <span class="marquee-item">Interview Prep</span>
       <span class="marquee-item">TESOL Certified</span>
       <span class="marquee-item">Public Speaking</span>
       <span class="marquee-item">Confidence Building</span>
       <span class="marquee-item">Table Manners</span>
-      <span class="marquee-item">CBSE Grammar</span>
+      <span class="marquee-item">English Grammar</span>
     </div>
   </div>
 
@@ -792,12 +803,12 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
       <div class="course-card reveal reveal-delay-2" onclick="showPage('courses')">
         <div class="course-card-body">
           <span class="course-icon">📖</span>
-          <div class="course-title">Basic Grammar (CBSE)</div>
+          <div class="course-title">Basic English Grammar</div>
           <div class="course-sub">Tense, voice, narration — finally clear. Score 90+ in your English boards.</div>
           <a href="#" class="learn-more" onclick="showPage('courses');return false">LEARN MORE →</a>
         </div>
         <div class="course-card-img">
-          <img src="grammar.jpeg" alt="Basic Grammar (CBSE)" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          <img src="grammar.jpeg" alt="Basic English Grammar" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
       </div>
       <div class="course-card reveal reveal-delay-3" onclick="showPage('courses')">
@@ -1044,12 +1055,12 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
   <div class="program reveal">
     <div class="program-content">
       <div class="program-num"><span class="icon">📖</span> PROGRAM 03</div>
-      <div class="program-title">Basic Grammar (CBSE)</div>
+      <div class="program-title">Basic English Grammar</div>
       <div class="program-tagline">Tense, voice, narration — finally clear.</div>
-      <div class="program-desc">A structured, exam-focused program for CBSE students from Class 4 to 10. We rebuild the fundamentals — tenses, voice, narration, modals, error spotting, editing, and writing — with worksheets, mock papers and personal feedback.</div>
+      <div class="program-desc">A structured, exam-focused program for students across all boards — CBSE, ICSE, IB, State Board. We rebuild the fundamentals — tenses, voice, narration, modals, error spotting, editing, and writing — with worksheets, mock papers and personal feedback.</div>
       <div class="program-meta">
         <div class="meta-item"><div><span class="meta-label">Duration</span><span class="meta-value">School year · weekly</span></div></div>
-        <div class="meta-item"><div><span class="meta-label">Audience</span><span class="meta-value">CBSE Class 4–10</span></div></div>
+        <div class="meta-item"><div><span class="meta-label">Audience</span><span class="meta-value">All Boards · Class 4–10</span></div></div>
       </div>
       <div class="program-features">
         <div class="feature">Score 90+ in English Boards</div>
@@ -1060,7 +1071,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
       <button class="btn-gold" onclick="openModal()">BOOK A FREE DEMO ↗</button>
     </div>
     <div class="program-img">
-      <img src="grammar.jpeg" alt="Basic Grammar (CBSE)" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)"/>
+      <img src="grammar.jpeg" alt="Basic English Grammar" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)"/>
     </div>
   </div>
 
@@ -1142,7 +1153,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
             <select id="r-program">
               <option value="Public Speaking">Public Speaking</option>
               <option value="Table Manners &amp; Etiquette">Table Manners &amp; Etiquette</option>
-              <option value="Basic Grammar (CBSE)">Basic Grammar (CBSE)</option>
+              <option value="Basic English Grammar">Basic English Grammar</option>
               <option value="Interview Preparation">Interview Preparation</option>
             </select>
           </div>
@@ -1181,6 +1192,111 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
 
 </div><!-- /reviews -->
 
+
+<div class="page" id="page-faq">
+<!-- ══ FAQ PAGE ══ -->
+<section class="page" id="faq" style="background:var(--navy2);padding:6rem 0">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:4rem">
+      <div class="section-tag reveal">HAVE QUESTIONS?</div>
+      <h2 class="section-title reveal">Frequently Asked <em>Questions</em></h2>
+    </div>
+    <div class="faq-list" style="max-width:780px;margin:0 auto">
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What age group do you teach?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Classes are designed for children from Class 4 onwards (around age 9+), teenagers, and adults including working professionals. Whether your child is 10 or your professional goal is interview success — there's a program for you.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Are the classes online or offline?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>All classes are conducted online via video call, making them accessible from anywhere in India and worldwide. Sessions are live, one-on-one or small group, and fully interactive.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Which boards do you cover for the Grammar program?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>The English Grammar program covers all major boards — CBSE, ICSE, IB, Cambridge, and State Boards. The curriculum is adapted to the student's specific syllabus and exam pattern.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does it take to see results?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Most students show noticeable improvement in confidence and fluency within 4–6 weeks. Significant transformation in public speaking and grammar typically happens within 8–12 weeks of consistent practice.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is the duration and frequency of classes?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Each session is 45–60 minutes. Frequency depends on the program — typically 2–3 sessions per week for children and flexible scheduling for working professionals.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          My child is very shy. Can public speaking classes really help?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Absolutely — in fact, shy children often see the most dramatic transformation. The program is specifically designed to build confidence gradually, starting from one-on-one sessions and slowly building to group and stage settings. No child is pushed before they are ready.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you offer a free trial class?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes! A complimentary 30-minute demo session is available for all new students. This includes a voice and confidence audit, a brief session, and a personalised roadmap — completely free, no commitment required.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What makes Voice & Verve different from other English coaching?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>With 20+ years of teaching experience, a TESOL certification, and a legal background as an Advocate of the Supreme Court, Adv. Ritu Khera brings a unique combination of academic rigour, real-world communication skills, and deep empathy. Classes are never generic — every student gets a personalised approach.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I enrol or get more information?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Simply click the "Free Demo" button anywhere on the site, fill in a short form, and we'll be in touch within 24 hours to schedule your complimentary session. You can also reach out via the Contact page.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</div>
 
 <!-- ══ CONTACT PAGE ══ -->
 <div class="page" id="page-contact">
@@ -1226,7 +1342,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
           <select id="c-interest">
             <option>Public Speaking</option>
             <option>Table Manners &amp; Etiquette</option>
-            <option>Basic Grammar (CBSE)</option>
+            <option>Basic English Grammar</option>
             <option>Interview Preparation</option>
             <option>General Enquiry</option>
           </select>
@@ -1333,7 +1449,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
               <select id="demo-interest">
                 <option>Public Speaking</option>
                 <option>Table Manners &amp; Etiquette</option>
-                <option>Basic Grammar (CBSE)</option>
+                <option>Basic English Grammar</option>
                 <option>Interview Preparation</option>
               </select>
             </div>
@@ -1554,6 +1670,20 @@ function loadApprovedReviews(){
     }).catch(()=>{});
 }
 loadApprovedReviews();
+
+// ── FAQ TOGGLE ──
+function toggleFaq(btn){
+  const answer=btn.nextElementSibling;
+  const isOpen=btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(b=>{
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if(!isOpen){
+    btn.classList.add('open');
+    answer.classList.add('open');
+  }
+}
 
 // ── MOBILE MENU ──
 function toggleMobileMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
