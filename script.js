@@ -186,18 +186,19 @@ function loadApprovedReviews(){
   fetch(SHEETDB_URL)
     .then(r=>r.json())
     .then(reviews=>{
+      console.log('Reviews loaded:', reviews);
       if(!reviews||!reviews.length)return;
       container.innerHTML='';
       reviews.forEach(r=>{
-        const starsNum=Number(r.Stars)||5;
+        const starsNum=Number(r['Stars'])||5;
         const stars='★'.repeat(starsNum)+'☆'.repeat(5-starsNum);
         const card=document.createElement('div');
         card.className='review-full reveal';
-        card.dataset.type=(r.Type||'').toLowerCase();
-        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.Review}"</div><div class="author">${r.Name}</div><div class="course-tag">${r.Program} · ${r.Type}</div>`;
+        card.dataset.type=(r['Type']||'').toLowerCase();
+        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r['Review']}"</div><div class="author">${r['Name']}</div><div class="course-tag">${r['Program']} · ${r['Type']}</div>`;
         container.appendChild(card);
       });
-    }).catch(()=>{});
+    }).catch(err=>{console.log('SheetDB error:',err);});
 }
 if(document.getElementById('reviewsContainer')){
   loadApprovedReviews();
