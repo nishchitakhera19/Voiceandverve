@@ -245,8 +245,7 @@
 
 <script src="script.js"></script>
 <script>
-// ── INLINE REVIEWS LOADER — runs after script.js ──
-(function(){
+window.addEventListener('load', function(){
   var SHEETDB='https://sheetdb.io/api/v1/3lvpwxsct2gz9/search?sheet=Reviews&Approved=Yes&t='+Date.now();
   var DUMMY=[
     {Name:'Priya Sharma',Review:"My daughter went from refusing to speak in class to winning the school debate. Ritu ma'am's method is unlike anything else we've tried.",Program:'Public Speaking',Type:'Parent',Stars:5},
@@ -272,9 +271,11 @@
   fetch(SHEETDB)
     .then(function(res){return res.json();})
     .then(function(data){
-      if(data&&data.length>0){render(data);}
+      if(data && data.length>0){render(data);}
       else{render(DUMMY);}
     })
     .catch(function(){render(DUMMY);});
-})();
+});
 </script>
+</body>
+</html>

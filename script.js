@@ -177,48 +177,6 @@ function submitContact(e){
   });
 }
 
-// ── LOAD APPROVED REVIEWS FROM SHEETDB ──
-const SHEETDB_URL='https://sheetdb.io/api/v1/3lvpwxsct2gz9/search?sheet=Reviews&Approved=Yes';
-
-const DUMMY_REVIEWS=[
-  {Name:'Priya Sharma',Review:'My daughter went from refusing to speak in class to winning the school debate. Ritu ma\'am\'s method is unlike anything else we\'ve tried.',Program:'Public Speaking',Type:'Parent',Stars:5},
-  {Name:'Arjun Mehta',Review:'The interview preparation program got me my dream job. The mock sessions and feedback were incredibly detailed and honest.',Program:'Interview Preparation',Type:'Professional',Stars:5},
-  {Name:'Sunita Verma',Review:'English grammar finally clicked for my son. His scores improved dramatically after just 8 weeks with Ritu ma\'am.',Program:'Basic Grammar',Type:'Parent',Stars:5}
-];
-
-function renderReviews(reviews){
-  const container=document.getElementById('reviewsContainer');
-  if(!container)return;
-  container.innerHTML='';
-  reviews.forEach(r=>{
-    const starsNum=Number(r['Stars'])||5;
-    const stars='★'.repeat(starsNum)+'☆'.repeat(5-starsNum);
-    const card=document.createElement('div');
-    card.className='review-full reveal';
-    card.dataset.type=(r['Type']||'').toLowerCase();
-    card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r['Review']}"</div><div class="author">${r['Name']}</div><div class="course-tag">${r['Program']} · ${r['Type']}</div>`;
-    container.appendChild(card);
-  });
-}
-
-function loadApprovedReviews(){
-  const container=document.getElementById('reviewsContainer');
-  if(!container)return;
-  fetch(SHEETDB_URL+'&t='+Date.now())
-    .then(r=>r.json())
-    .then(reviews=>{
-      if(reviews&&reviews.length>0){
-        renderReviews(reviews);
-      } else {
-        renderReviews(DUMMY_REVIEWS);
-      }
-    }).catch(()=>{
-      renderReviews(DUMMY_REVIEWS);
-    });
-}
-if(document.getElementById('reviewsContainer')){
-  loadApprovedReviews();
-}
 
 // ── FAQ TOGGLE ──
 function toggleFaq(btn){
