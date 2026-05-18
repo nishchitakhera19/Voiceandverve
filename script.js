@@ -181,36 +181,24 @@ function submitContact(e){
 function loadApprovedReviews(){
   const container=document.getElementById('reviewsContainer');
   if(!container)return;
-  // Show loading state
-  container.innerHTML='<p style="color:var(--muted);text-align:center;padding:2rem;font-family:var(--sans)">Loading reviews...</p>';
-  fetch(SHEET_URL,{
-    method:'GET',
-    headers:{'Content-Type':'text/plain'}
-  })
-  .then(r=>{
-    if(!r.ok)throw new Error('Network error');
-    return r.json();
-  })
-  .then(reviews=>{
-    if(!reviews||!reviews.length){
-      container.innerHTML='<p style="color:var(--muted);text-align:center;padding:2rem;font-family:var(--sans)">No reviews yet.</p>';
-      return;
-    }
-    container.innerHTML='';
-    reviews.forEach(r=>{
-      const starsNum=Number(r.stars)||5;
-      const stars='★'.repeat(starsNum)+'☆'.repeat(5-starsNum);
-      const card=document.createElement('div');
-      card.className='review-full reveal';
-      card.dataset.type=(r.type||'').toLowerCase();
-      card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
-      container.appendChild(card);
+  fetch(SHEET_URL)
+    .then(r=>r.json())
+    .then(reviews=>{
+      if(!reviews||!reviews.length)return;
+      // Replace placeholders with real reviews
+      container.innerHTML='';
+      reviews.forEach(r=>{
+        const starsNum=Number(r.stars)||5;
+        const stars='★'.repeat(starsNum)+'☆'.repeat(5-starsNum);
+        const card=document.createElement('div');
+        card.className='review-full reveal';
+        card.dataset.type=(r.type||'').toLowerCase();
+        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
+        container.appendChild(card);
+      });
+    }).catch(()=>{
+      // Keep placeholder reviews visible on error
     });
-  })
-  .catch(err=>{
-    console.error('Reviews fetch error:',err);
-    container.innerHTML='<p style="color:var(--muted);text-align:center;padding:2rem;font-family:var(--sans)">Unable to load reviews right now.</p>';
-  });
 }
 if(document.getElementById('reviewsContainer')){
   loadApprovedReviews();
