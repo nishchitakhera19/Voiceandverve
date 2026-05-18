@@ -177,6 +177,25 @@ function submitContact(e){
   });
 }
 
+// ── LOAD APPROVED REVIEWS FROM SHEET ──
+function loadApprovedReviews(){
+  fetch(SHEET_URL)
+    .then(r=>r.json())
+    .then(reviews=>{
+      if(!reviews.length)return;
+      const container=document.getElementById('reviewsContainer');
+      container.innerHTML='';
+      reviews.forEach(r=>{
+        const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
+        const card=document.createElement('div');
+        card.className='review-full reveal';
+        card.dataset.type=(r.type||'').toLowerCase();
+        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
+        container.appendChild(card);
+      });
+    }).catch(()=>{});
+}
+loadApprovedReviews();
 
 // ── FAQ TOGGLE ──
 function toggleFaq(btn){

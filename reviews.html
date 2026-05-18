@@ -75,7 +75,24 @@
   </section>
 
   <div class="all-reviews" id="reviewsContainer">
-    <p style="color:var(--muted);text-align:center;padding:3rem;font-family:var(--sans);font-size:0.9rem">Loading reviews...</p>
+    <div class="review-full reveal" data-type="parent">
+      <div class="stars">★★★★★</div>
+      <div class="text">"My daughter went from refusing to speak in class to winning the school debate. Ritu ma'am's method is unlike anything else we've tried."</div>
+      <div class="author">Priya Sharma</div>
+      <div class="course-tag">Public Speaking · Parent</div>
+    </div>
+    <div class="review-full reveal reveal-delay-1" data-type="professional">
+      <div class="stars">★★★★★</div>
+      <div class="text">"The interview preparation program got me my dream job. The mock sessions and feedback were incredibly detailed and honest."</div>
+      <div class="author">Arjun Mehta</div>
+      <div class="course-tag">Interview Preparation · Professional</div>
+    </div>
+    <div class="review-full reveal reveal-delay-2" data-type="parent">
+      <div class="stars">★★★★★</div>
+      <div class="text">"CBSE grammar finally clicked for my son. His board exam scores improved dramatically after just 8 weeks with Ritu ma'am."</div>
+      <div class="author">Sunita Verma</div>
+      <div class="course-tag">Basic Grammar · Parent</div>
+    </div>
   </div>
 
   <section class="leave-review">
@@ -244,38 +261,5 @@
 
 
 <script src="script.js"></script>
-<script>
-window.addEventListener('load', function(){
-  var SHEETDB='https://sheetdb.io/api/v1/3lvpwxsct2gz9/search?sheet=Reviews&Approved=Yes&t='+Date.now();
-  var DUMMY=[
-    {Name:'Priya Sharma',Review:"My daughter went from refusing to speak in class to winning the school debate. Ritu ma'am's method is unlike anything else we've tried.",Program:'Public Speaking',Type:'Parent',Stars:5},
-    {Name:'Arjun Mehta',Review:"The interview preparation program got me my dream job. The mock sessions and feedback were incredibly detailed and honest.",Program:'Interview Preparation',Type:'Professional',Stars:5},
-    {Name:'Sunita Verma',Review:"English grammar finally clicked for my son. His scores improved dramatically after just 8 weeks with Ritu ma'am.",Program:'Basic Grammar',Type:'Parent',Stars:5}
-  ];
-
-  function render(list){
-    var c=document.getElementById('reviewsContainer');
-    if(!c)return;
-    c.innerHTML='';
-    list.forEach(function(r){
-      var n=Number(r.Stars)||5;
-      var s='★'.repeat(n)+'☆'.repeat(5-n);
-      var d=document.createElement('div');
-      d.className='review-full reveal';
-      d.setAttribute('data-type',(r.Type||'').toLowerCase());
-      d.innerHTML='<div class="stars">'+s+'</div><div class="text">"'+r.Review+'"</div><div class="author">'+r.Name+'</div><div class="course-tag">'+r.Program+' · '+r.Type+'</div>';
-      c.appendChild(d);
-    });
-  }
-
-  fetch(SHEETDB)
-    .then(function(res){return res.json();})
-    .then(function(data){
-      if(data && data.length>0){render(data);}
-      else{render(DUMMY);}
-    })
-    .catch(function(){render(DUMMY);});
-});
-</script>
 </body>
 </html>
