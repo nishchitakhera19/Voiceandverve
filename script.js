@@ -177,28 +177,27 @@ function submitContact(e){
   });
 }
 
-// ── LOAD APPROVED REVIEWS FROM SHEET ──
+// ── LOAD APPROVED REVIEWS FROM SHEETDB ──
+const SHEETDB_URL='https://sheetdb.io/api/v1/3lvpwxsct2gz9/search?sheet=Reviews&Approved=Yes';
+
 function loadApprovedReviews(){
   const container=document.getElementById('reviewsContainer');
   if(!container)return;
-  fetch(SHEET_URL)
+  fetch(SHEETDB_URL)
     .then(r=>r.json())
     .then(reviews=>{
       if(!reviews||!reviews.length)return;
-      // Replace placeholders with real reviews
       container.innerHTML='';
       reviews.forEach(r=>{
-        const starsNum=Number(r.stars)||5;
+        const starsNum=Number(r.Stars)||5;
         const stars='★'.repeat(starsNum)+'☆'.repeat(5-starsNum);
         const card=document.createElement('div');
         card.className='review-full reveal';
-        card.dataset.type=(r.type||'').toLowerCase();
-        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
+        card.dataset.type=(r.Type||'').toLowerCase();
+        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.Review}"</div><div class="author">${r.Name}</div><div class="course-tag">${r.Program} · ${r.Type}</div>`;
         container.appendChild(card);
       });
-    }).catch(()=>{
-      // Keep placeholder reviews visible on error
-    });
+    }).catch(()=>{});
 }
 if(document.getElementById('reviewsContainer')){
   loadApprovedReviews();
