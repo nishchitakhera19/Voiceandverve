@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded',function(){
 // ── CUSTOM CURSOR ──
 const cursor=document.getElementById('cursor');
 const cursorRing=document.getElementById('cursorRing');
@@ -218,3 +219,4 @@ function toggleMobileMenu(){document.getElementById('mobileMenu').classList.togg
 
 // ── KEYBOARD ──
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+});
