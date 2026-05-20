@@ -182,8 +182,9 @@ function loadApprovedReviews(){
   fetch(SHEET_URL)
     .then(r=>r.json())
     .then(reviews=>{
-      if(!reviews.length)return;
+      if(!Array.isArray(reviews)||!reviews.length)return;
       const container=document.getElementById('reviewsContainer');
+      if(!container)return;
       container.innerHTML='';
       reviews.forEach(r=>{
         const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
@@ -193,6 +194,7 @@ function loadApprovedReviews(){
         card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
         container.appendChild(card);
       });
+      initReveal();
     }).catch(()=>{});
 }
 loadApprovedReviews();
