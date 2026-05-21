@@ -214,7 +214,7 @@ function parseCSV(text){
     // Clean approved: strip all whitespace, quotes, special chars
     const approved=(cols[6]||'').replace(/[^a-zA-Z]/g,'').toLowerCase();
     return{name:cols[1]||'',program:cols[2]||'',text:cols[3]||'',type:cols[4]||'',stars:parseInt(cols[5])||5,approved:approved};
-  }).filter(r=>r.approved==='yes'&&r.text);
+  }).filter(r=>r.approved==='yes'&&r.text&&r.name);
 }
 
 function loadApprovedReviews(){
@@ -254,12 +254,7 @@ function loadApprovedReviews(){
       }
     }).catch(()=>{renderReviews(PLACEHOLDER_REVIEWS);});
 }
-// Delay fetch until page is fully painted — improves LCP score
-if(document.readyState==='complete'){
-  setTimeout(loadApprovedReviews, 800);
-} else {
-  window.addEventListener('load', ()=>setTimeout(loadApprovedReviews, 800));
-}
+loadApprovedReviews();
 
 // ── FAQ TOGGLE ──
 function toggleFaq(btn){
