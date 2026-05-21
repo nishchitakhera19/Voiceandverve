@@ -197,24 +197,28 @@ function renderReviews(reviews){
     initReveal();
   }
 }
-// Direct CSV fetch — much faster than Apps Script cold start
-const CSV_URL='https://docs.google.com/spreadsheets/d/1oVYloXSX1SQbFBawMSCJcAklv9TZZ-6ZKboOV51PAGY/export?format=csv&gid=1011886561';
+// Fetch reviews — try CSV first (fast), fall back to Apps Script
+const CSV_URL='https://docs.google.com/spreadsheets/d/1oVYloXSX1SQbFBawMSCJcAklv9TZZ-6ZKboOV51PAGY/export?format=tsv&gid=1011886561';
 
 function parseCSV(text){
+  // Google Sheets exports as TSV (tab-separated) not CSV
   const lines=text.trim().split('\n');
   return lines.slice(1).map(line=>{
-    const cols=[];
-    let cur='',inQ=false;
-    for(let i=0;i<line.length;i++){
-      if(line[i]==='"'){inQ=!inQ;}
-      else if(line[i]===','&&!inQ){cols.push(cur.trim().replace(/^"|"$/g,'').trim());cur='';}
-      else{cur+=line[i];}
-    }
-    cols.push(cur.trim().replace(/^"|"$/g,'').trim());
-    // Clean approved: strip all whitespace, quotes, special chars
+    // Split by tab
+    const cols=line.split('\t').map(c=>c.trim().replace(/^"+|"+$/g,'').trim());
+    if(!cols||cols.length<7)return null;
     const approved=(cols[6]||'').replace(/[^a-zA-Z]/g,'').toLowerCase();
-    return{name:cols[1]||'',program:cols[2]||'',text:cols[3]||'',type:cols[4]||'',stars:parseInt(cols[5])||5,approved:approved};
-  }).filter(r=>r.approved==='yes'&&r.text&&r.name);
+    const name=(cols[1]||'').trim();
+    const reviewText=(cols[3]||'').replace(/\r/g,' ').replace(/\n/g,' ').trim();
+    return{
+      name:name,
+      program:(cols[2]||'').trim(),
+      text:reviewText,
+      type:(cols[4]||'').trim(),
+      stars:parseInt(cols[5])||5,
+      approved:approved
+    };
+  }).filter(r=>r&&r.approved==='yes'&&r.text&&r.name);
 }
 
 function loadApprovedReviews(){
@@ -238,21 +242,38 @@ function loadApprovedReviews(){
       return;
     }
   }catch(e){}
-  // No cache — fetch CSV directly (fast!)
+  // Try CSV first (fast), fallback to Apps Script if CSV fails
   fetch(CSV_URL)
-    .then(r=>r.text())
+    .then(r=>{
+      if(!r.ok)throw new Error('CSV failed');
+      return r.text();
+    })
     .then(text=>{
       const reviews=parseCSV(text);
       if(!reviews.length){
-        renderReviews(PLACEHOLDER_REVIEWS);
-      } else {
-        renderReviews(reviews);
-        try{
-          localStorage.setItem('vv_reviews',JSON.stringify(reviews));
-          localStorage.setItem('vv_reviews_time',Date.now().toString());
-        }catch(e){}
+        // CSV worked but no approved reviews — try Apps Script to confirm
+        return fetch(SHEET_URL).then(r=>r.json()).then(data=>{
+          if(Array.isArray(data)&&data.length){
+            renderReviews(data);
+            try{localStorage.setItem('vv_reviews',JSON.stringify(data));localStorage.setItem('vv_reviews_time',Date.now().toString());}catch(e){}
+          } else {
+            renderReviews(PLACEHOLDER_REVIEWS);
+          }
+        }).catch(()=>renderReviews(PLACEHOLDER_REVIEWS));
       }
-    }).catch(()=>{renderReviews(PLACEHOLDER_REVIEWS);});
+      renderReviews(reviews);
+      try{localStorage.setItem('vv_reviews',JSON.stringify(reviews));localStorage.setItem('vv_reviews_time',Date.now().toString());}catch(e){}
+    })
+    .catch(()=>{
+      // CSV failed — use Apps Script
+      fetch(SHEET_URL).then(r=>r.json()).then(reviews=>{
+        if(!Array.isArray(reviews)||!reviews.length){renderReviews(PLACEHOLDER_REVIEWS);}
+        else{
+          renderReviews(reviews);
+          try{localStorage.setItem('vv_reviews',JSON.stringify(reviews));localStorage.setItem('vv_reviews_time',Date.now().toString());}catch(e){}
+        }
+      }).catch(()=>renderReviews(PLACEHOLDER_REVIEWS));
+    });
 }
 loadApprovedReviews();
 
