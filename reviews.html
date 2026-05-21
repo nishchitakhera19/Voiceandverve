@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://voiceandverve.in/reviews.html"/>
 <meta property="og:title" content="Student Reviews & Testimonials | Voice & Verve | Adv. Ritu Khera"/>
 <meta property="og:description" content="Read what parents, students and professionals say about Voice & Verve English coaching. 300+ students transformed. Real reviews from real families across India."/>
-<meta property="og:image" content="https://voiceandverve.in/ritu.webp"/>
+<meta property="og:image" content="https://voiceandverve.in/ritu.jpeg"/>
 <meta property="og:locale" content="en_IN"/>
 <meta property="og:site_name" content="Voice &amp; Verve"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -75,25 +75,12 @@
   </section>
 
   <div class="all-reviews" id="reviewsContainer">
-    <div class="review-full reveal" data-type="parent">
-      <div class="stars">★★★★★</div>
-      <div class="text">"My daughter went from refusing to speak in class to winning the school debate. Ritu ma'am's method is unlike anything else we've tried."</div>
-      <div class="author">Priya Sharma</div>
-      <div class="course-tag">Public Speaking · Parent</div>
-    </div>
-    <div class="review-full reveal reveal-delay-1" data-type="professional">
-      <div class="stars">★★★★★</div>
-      <div class="text">"The interview preparation program got me my dream job. The mock sessions and feedback were incredibly detailed and honest."</div>
-      <div class="author">Arjun Mehta</div>
-      <div class="course-tag">Interview Preparation · Professional</div>
-    </div>
-    <div class="review-full reveal reveal-delay-2" data-type="parent">
-      <div class="stars">★★★★★</div>
-      <div class="text">"CBSE grammar finally clicked for my son. His board exam scores improved dramatically after just 8 weeks with Ritu ma'am."</div>
-      <div class="author">Sunita Verma</div>
-      <div class="course-tag">Basic Grammar · Parent</div>
+    <div id="reviewsLoading" style="width:100%;text-align:center;padding:4rem 0;grid-column:1/-1">
+      <div style="display:inline-block;width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite"></div>
+      <p style="color:var(--muted);margin-top:1rem;font-family:var(--sans);font-size:0.9rem">Loading reviews...</p>
     </div>
   </div>
+  <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
 
   <section class="leave-review">
     <div class="inner">

@@ -178,24 +178,32 @@ function submitContact(e){
 }
 
 // ── LOAD APPROVED REVIEWS FROM SHEET ──
+const PLACEHOLDER_REVIEWS=[
+  {stars:5,text:"My daughter went from refusing to speak in class to winning the school debate. Ritu ma'am's method is unlike anything else we've tried.",name:"Priya Sharma",program:"Public Speaking",type:"Parent"},
+  {stars:5,text:"The interview preparation program got me my dream job. The mock sessions and feedback were incredibly detailed and honest.",name:"Arjun Mehta",program:"Interview Preparation",type:"Professional"},
+  {stars:5,text:"CBSE grammar finally clicked for my son. His board exam scores improved dramatically after just 8 weeks with Ritu ma'am.",name:"Sunita Verma",program:"Basic Grammar",type:"Parent"}
+];
+function renderReviews(reviews){
+  const container=document.getElementById('reviewsContainer');
+  if(!container)return;
+  container.innerHTML='';
+  reviews.forEach(r=>{
+    const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
+    const card=document.createElement('div');
+    card.className='review-full reveal';
+    card.dataset.type=(r.type||'').toLowerCase();
+    card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
+    container.appendChild(card);
+  });
+  initReveal();
+}
 function loadApprovedReviews(){
   fetch(SHEET_URL)
     .then(r=>r.json())
     .then(reviews=>{
-      if(!Array.isArray(reviews)||!reviews.length)return;
-      const container=document.getElementById('reviewsContainer');
-      if(!container)return;
-      container.innerHTML='';
-      reviews.forEach(r=>{
-        const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
-        const card=document.createElement('div');
-        card.className='review-full reveal';
-        card.dataset.type=(r.type||'').toLowerCase();
-        card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
-        container.appendChild(card);
-      });
-      initReveal();
-    }).catch(()=>{});
+      if(!Array.isArray(reviews)||!reviews.length){renderReviews(PLACEHOLDER_REVIEWS);}
+      else{renderReviews(reviews);}
+    }).catch(()=>{renderReviews(PLACEHOLDER_REVIEWS);});
 }
 loadApprovedReviews();
 
