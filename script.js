@@ -182,17 +182,40 @@ function renderReviews(reviews){
   });
   initReveal();
 }
+// Direct CSV fetch — much faster than Apps Script cold start
+const CSV_URL='https://docs.google.com/spreadsheets/d/1oVYloXSX1SQbFBawMSCJcAklv9TZZ-6ZKboOV51PAGY/export?format=csv&gid=1011886561';
+
+function parseCSV(text){
+  const lines=text.trim().split('\n');
+  // headers: Timestamp, Name, Program, Review, Type, Stars, Approved
+  return lines.slice(1).map(line=>{
+    // Handle quoted fields with commas inside
+    const cols=[];
+    let cur='',inQ=false;
+    for(let i=0;i<line.length;i++){
+      if(line[i]==='"'){inQ=!inQ;}
+      else if(line[i]===','&&!inQ){cols.push(cur.trim());cur='';}
+      else{cur+=line[i];}
+    }
+    cols.push(cur.trim());
+    return{name:cols[1]||'',program:cols[2]||'',text:cols[3]||'',type:cols[4]||'',stars:parseInt(cols[5])||5,approved:(cols[6]||'').trim()};
+  }).filter(r=>r.approved.toLowerCase()==='yes'&&r.text);
+}
+
 function loadApprovedReviews(){
   // Show cached reviews instantly if available
   try{
     const cached=localStorage.getItem('vv_reviews');
     const cachedTime=localStorage.getItem('vv_reviews_time');
-    const oneHour=60*60*1000;
-    if(cached&&cachedTime&&(Date.now()-parseInt(cachedTime))<oneHour){
-      renderReviews(JSON.parse(cached));
-      // Still fetch in background to update cache silently
-      fetch(SHEET_URL).then(r=>r.json()).then(reviews=>{
-        if(Array.isArray(reviews)&&reviews.length){
+    const fiveMin=5*60*1000;
+    if(cached&&cachedTime&&(Date.now()-parseInt(cachedTime))<fiveMin){
+      const parsed=JSON.parse(cached);
+      if(parsed.length){renderReviews(parsed);}
+      else{renderReviews(PLACEHOLDER_REVIEWS);}
+      // Refresh cache silently in background
+      fetch(CSV_URL).then(r=>r.text()).then(text=>{
+        const reviews=parseCSV(text);
+        if(reviews.length){
           localStorage.setItem('vv_reviews',JSON.stringify(reviews));
           localStorage.setItem('vv_reviews_time',Date.now().toString());
         }
@@ -200,11 +223,12 @@ function loadApprovedReviews(){
       return;
     }
   }catch(e){}
-  // No cache — fetch and show
-  fetch(SHEET_URL)
-    .then(r=>r.json())
-    .then(reviews=>{
-      if(!Array.isArray(reviews)||!reviews.length){
+  // No cache — fetch CSV directly (fast!)
+  fetch(CSV_URL)
+    .then(r=>r.text())
+    .then(text=>{
+      const reviews=parseCSV(text);
+      if(!reviews.length){
         renderReviews(PLACEHOLDER_REVIEWS);
       } else {
         renderReviews(reviews);
