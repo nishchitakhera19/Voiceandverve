@@ -7,7 +7,7 @@
   --gold2:#e8b42a;
   --gold3:rgba(212,160,23,0.12);
   --white:#ffffff;
-  --muted:#9a9aaa;
+  --muted:#b8b8c8;
   --border:#2a2d3e;
   --serif:'Playfair Display',serif;
   --sans:'DM Sans',sans-serif;
@@ -309,7 +309,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
 .footer-socials a:hover{color:var(--gold);border-color:var(--gold);background:rgba(212,160,23,0.07)}
 .footer-bottom{border-top:1px solid var(--border);padding-top:1.8rem;display:flex;justify-content:space-between;align-items:center}
 .footer-bottom p{font-size:0.8rem;color:var(--muted)}
-.footer-bottom .values{font-family:var(--sans);font-size:0.67rem;letter-spacing:0.22em;color:var(--border);text-transform:uppercase}
+.footer-bottom .values{font-family:var(--sans);font-size:0.67rem;letter-spacing:0.22em;color:var(--muted);text-transform:uppercase}
 
 /* ── ABOUT PAGE ── */
 .about-hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px);padding:5rem 3rem;gap:5rem;align-items:center}
