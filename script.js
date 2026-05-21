@@ -169,37 +169,52 @@ const PLACEHOLDER_REVIEWS=[
   {stars:5,text:"CBSE grammar finally clicked for my son. His board exam scores improved dramatically after just 8 weeks with Ritu ma'am.",name:"Sunita Verma",program:"Basic Grammar",type:"Parent"}
 ];
 function renderReviews(reviews){
+  // ── Full reviews page ──
   const container=document.getElementById('reviewsContainer');
-  if(!container)return;
-  container.innerHTML='';
-  reviews.forEach(r=>{
-    const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
-    const card=document.createElement('div');
-    card.className='review-full reveal';
-    card.dataset.type=(r.type||'').toLowerCase();
-    card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
-    container.appendChild(card);
-  });
-  initReveal();
+  if(container){
+    container.innerHTML='';
+    reviews.forEach(r=>{
+      const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
+      const card=document.createElement('div');
+      card.className='review-full reveal';
+      card.dataset.type=(r.type||'').toLowerCase();
+      card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
+      container.appendChild(card);
+    });
+    initReveal();
+  }
+  // ── Homepage preview (max 3) ──
+  const homeGrid=document.getElementById('homeReviewsGrid');
+  if(homeGrid){
+    homeGrid.innerHTML='';
+    reviews.slice(0,3).forEach((r,i)=>{
+      const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
+      const card=document.createElement('div');
+      card.className='review-card reveal'+(i>0?' reveal-delay-'+i:'');
+      card.innerHTML=`<div class="review-stars">${stars}</div><div class="review-text">"${r.text}"</div><div class="review-author">${r.name} · ${r.type}</div>`;
+      homeGrid.appendChild(card);
+    });
+    initReveal();
+  }
 }
 // Direct CSV fetch — much faster than Apps Script cold start
 const CSV_URL='https://docs.google.com/spreadsheets/d/1oVYloXSX1SQbFBawMSCJcAklv9TZZ-6ZKboOV51PAGY/export?format=csv&gid=1011886561';
 
 function parseCSV(text){
   const lines=text.trim().split('\n');
-  // headers: Timestamp, Name, Program, Review, Type, Stars, Approved
   return lines.slice(1).map(line=>{
-    // Handle quoted fields with commas inside
     const cols=[];
     let cur='',inQ=false;
     for(let i=0;i<line.length;i++){
       if(line[i]==='"'){inQ=!inQ;}
-      else if(line[i]===','&&!inQ){cols.push(cur.trim());cur='';}
+      else if(line[i]===','&&!inQ){cols.push(cur.trim().replace(/^"|"$/g,'').trim());cur='';}
       else{cur+=line[i];}
     }
-    cols.push(cur.trim());
-    return{name:cols[1]||'',program:cols[2]||'',text:cols[3]||'',type:cols[4]||'',stars:parseInt(cols[5])||5,approved:(cols[6]||'').trim()};
-  }).filter(r=>r.approved.toLowerCase()==='yes'&&r.text);
+    cols.push(cur.trim().replace(/^"|"$/g,'').trim());
+    // Clean approved: strip all whitespace, quotes, special chars
+    const approved=(cols[6]||'').replace(/[^a-zA-Z]/g,'').toLowerCase();
+    return{name:cols[1]||'',program:cols[2]||'',text:cols[3]||'',type:cols[4]||'',stars:parseInt(cols[5])||5,approved:approved};
+  }).filter(r=>r.approved==='yes'&&r.text);
 }
 
 function loadApprovedReviews(){
@@ -207,7 +222,7 @@ function loadApprovedReviews(){
   try{
     const cached=localStorage.getItem('vv_reviews');
     const cachedTime=localStorage.getItem('vv_reviews_time');
-    const fiveMin=5*60*1000;
+    const fiveMin=30*1000; // 30 seconds — so Yes/No changes reflect quickly
     if(cached&&cachedTime&&(Date.now()-parseInt(cachedTime))<fiveMin){
       const parsed=JSON.parse(cached);
       if(parsed.length){renderReviews(parsed);}
