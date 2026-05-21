@@ -7,8 +7,8 @@
   --gold2:#e8b42a;
   --gold3:rgba(212,160,23,0.12);
   --white:#ffffff;
-  --muted:#b8b8c8;
-  --border:#3a3d52;
+  --muted:#9a9aaa;
+  --border:#2a2d3e;
   --serif:'Playfair Display',serif;
   --sans:'DM Sans',sans-serif;
 }
@@ -308,7 +308,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
 .footer-socials a:hover{color:var(--gold);border-color:var(--gold);background:rgba(212,160,23,0.07)}
 .footer-bottom{border-top:1px solid var(--border);padding-top:1.8rem;display:flex;justify-content:space-between;align-items:center}
 .footer-bottom p{font-size:0.8rem;color:var(--muted)}
-.footer-bottom .values{font-family:var(--sans);font-size:0.67rem;letter-spacing:0.22em;color:var(--muted);text-transform:uppercase}
+.footer-bottom .values{font-family:var(--sans);font-size:0.67rem;letter-spacing:0.22em;color:var(--border);text-transform:uppercase}
 
 /* ── ABOUT PAGE ── */
 .about-hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px);padding:5rem 3rem;gap:5rem;align-items:center}
@@ -515,7 +515,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
 .text-gold{color:var(--gold)}
 
 @media(max-width:900px){
-  nav{padding:0 1.5rem}
+  nav{padding:0 1.2rem}
   .nav-links,.nav-cta{display:none}
   .burger{display:flex}
   .hero,.about-hero,.contact-page{grid-template-columns:1fr}
@@ -528,7 +528,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
   .program{grid-template-columns:1fr;min-height:unset}
   .program.reverse{direction:ltr}
   .program-img{height:280px;min-height:280px}
-  .program-content{padding:2.5rem 2rem}
+  .program-content{padding:2.5rem 1.2rem}
   .reviews-grid,.all-reviews{grid-template-columns:1fr}
   .cred-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr}
@@ -536,14 +536,15 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
   .form-row,.modal-form-row{grid-template-columns:1fr}
   .modal{grid-template-columns:1fr}
   .modal-left{display:none}
-  .section{padding:5rem 1.5rem}
-  .reviews-hero,.courses-hero,.leave-review,.timeline,.credentials,.parent-letter{padding:5rem 1.5rem}
-  .all-reviews{padding:0 1.5rem 5rem}
+  .section{padding:4rem 1.2rem}
+  .reviews-hero,.courses-hero,.leave-review,.timeline,.credentials,.parent-letter{padding:4rem 1.2rem}
+  .all-reviews{padding:0 1.2rem 4rem}
   .timeline-items::before{left:80px}
   .timeline-item{grid-template-columns:60px 30px 1fr}
   .timeline-year{font-size:1.6rem}
   .contact-page{grid-template-columns:1fr}
-  .contact-left,.contact-right{padding:5rem 1.5rem}
+  .contact-left{display:none}
+  .contact-right{padding:4rem 1.2rem}
   .steps-grid{grid-template-columns:1fr;gap:2rem}
   .step:not(:last-child)::after{content:'↓';right:50%;top:auto;bottom:-1.5rem}
   .about-badge{right:0}
@@ -556,6 +557,22 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:5rem 3
   .about-badge{top:0.5rem;padding:0.7rem 0.9rem}
   .about-badge .num{font-size:1.4rem}
   .about-badge .lbl{font-size:0.5rem}
+  /* Hero text sizing for small screens */
+  .hero-content{padding:4rem 1.2rem}
+  .hero-h1{font-size:clamp(2.2rem,8vw,3.5rem)}
+  .hero-body{font-size:0.95rem}
+  .reviews-hero h1{font-size:clamp(2rem,7vw,3rem)}
+  .section-h2{font-size:clamp(1.8rem,6vw,2.8rem)}
+  .cta-h2{font-size:clamp(2rem,7vw,3.5rem)}
+  /* Fix modal on mobile */
+  .modal-right{padding:2rem 1.2rem}
+  /* Fix footer on mobile */
+  .footer-grid{padding:3rem 1.2rem}
+  .footer-bottom{padding:1.5rem 1.2rem;flex-direction:column;gap:0.8rem;text-align:center}
+  /* Reviews page */
+  .review-full{padding:1.8rem 1.2rem}
+  .leave-review .inner{padding:0}
+  .review-form{gap:1.2rem}
 }
 .mobile-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:200;flex-direction:column;padding:5.5rem 2.5rem 2.5rem;gap:1.8rem}
 .mobile-menu.open{display:flex;animation:fadeIn 0.3s ease}
