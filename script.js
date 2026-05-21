@@ -113,11 +113,8 @@ function submitDemo(e){
   const data={
     formType:'demo',
     name:e.target.querySelector('input[type=text]').value,
-    email:document.getElementById('demo-email').value,
     phone:document.getElementById('demo-phone').value,
-    type:document.getElementById('demo-type').value,
-    interest:document.getElementById('demo-interest').value,
-    note:document.getElementById('demo-note').value
+    interest:document.getElementById('demo-interest').value
   };
   const btn=e.target.querySelector('button[type=submit]');
   btn.textContent='Sending...';
@@ -143,7 +140,8 @@ function submitReview(e){
   document.getElementById('reviewFormContent').style.display='none';
   document.getElementById('reviewSuccess').classList.add('show');
   // Submit in background
-  fetch(SHEET_URL,{method:'POST',body:JSON.stringify({formType:'review',name,program,text,type,stars})}).catch(()=>{});
+  const location=document.getElementById('r-location')?document.getElementById('r-location').value:'';
+  fetch(SHEET_URL,{method:'POST',body:JSON.stringify({formType:'review',name,program,text,type,stars,location})}).catch(()=>{});
 }
 
 function submitContact(e){
@@ -178,7 +176,8 @@ function renderReviews(reviews){
       const card=document.createElement('div');
       card.className='review-full reveal';
       card.dataset.type=(r.type||'').toLowerCase();
-      card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}</div>`;
+      const loc=r.location?` · ${r.location}`:'';
+    card.innerHTML=`<div class="stars">${stars}</div><div class="text">"${r.text}"</div><div class="author">${r.name}</div><div class="course-tag">${r.program} · ${r.type}${loc}</div>`;
       container.appendChild(card);
     });
     initReveal();
@@ -207,7 +206,7 @@ function parseCSV(text){
     // Split by tab
     const cols=line.split('\t').map(c=>c.trim().replace(/^"+|"+$/g,'').trim());
     if(!cols||cols.length<7)return null;
-    const approved=(cols[6]||'').replace(/[^a-zA-Z]/g,'').toLowerCase();
+    const approved=(cols[7]||'').replace(/[^a-zA-Z]/g,'').toLowerCase();
     const name=(cols[1]||'').trim();
     const reviewText=(cols[3]||'').replace(/\r/g,' ').replace(/\n/g,' ').trim();
     return{
@@ -216,6 +215,7 @@ function parseCSV(text){
       text:reviewText,
       type:(cols[4]||'').trim(),
       stars:parseInt(cols[5])||5,
+      location:(cols[6]||'').trim(),
       approved:approved
     };
   }).filter(r=>r&&r.approved==='yes'&&r.text&&r.name);
