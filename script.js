@@ -122,16 +122,11 @@ function submitDemo(e){
   const btn=e.target.querySelector('button[type=submit]');
   btn.textContent='Sending...';
   btn.disabled=true;
-  fetch(SHEET_URL,{
-    method:'POST',
-    body:JSON.stringify(data)
-  }).then(()=>{
-    document.getElementById('demoFormContent').style.display='none';
-    document.getElementById('demoSuccess').classList.add('show');
-  }).catch(()=>{
-    document.getElementById('demoFormContent').style.display='none';
-    document.getElementById('demoSuccess').classList.add('show');
-  });
+  // Show success immediately — don't wait for slow Apps Script
+  document.getElementById('demoFormContent').style.display='none';
+  document.getElementById('demoSuccess').classList.add('show');
+  // Submit in background
+  fetch(SHEET_URL,{method:'POST',body:JSON.stringify(data)}).catch(()=>{});
 }
 
 function submitReview(e){
@@ -144,16 +139,11 @@ function submitReview(e){
   const stars=ratingInput?parseInt(ratingInput.value):5;
   const btn=e.target.querySelector('button[type=submit]');
   btn.textContent='Sending...';btn.disabled=true;
-  fetch(SHEET_URL,{
-    method:'POST',
-    body:JSON.stringify({formType:'review',name,program,text,type,stars})
-  }).then(()=>{
-    document.getElementById('reviewFormContent').style.display='none';
-    document.getElementById('reviewSuccess').classList.add('show');
-  }).catch(()=>{
-    document.getElementById('reviewFormContent').style.display='none';
-    document.getElementById('reviewSuccess').classList.add('show');
-  });
+  // Show success immediately — don't wait for slow Apps Script
+  document.getElementById('reviewFormContent').style.display='none';
+  document.getElementById('reviewSuccess').classList.add('show');
+  // Submit in background
+  fetch(SHEET_URL,{method:'POST',body:JSON.stringify({formType:'review',name,program,text,type,stars})}).catch(()=>{});
 }
 
 function submitContact(e){
@@ -165,16 +155,11 @@ function submitContact(e){
   const message=document.getElementById('c-message').value;
   const btn=e.target.querySelector('button[type=submit]');
   btn.textContent='Sending...';btn.disabled=true;
-  fetch(SHEET_URL,{
-    method:'POST',
-    body:JSON.stringify({formType:'contact',name,email,phone,interest,message})
-  }).then(()=>{
-    document.getElementById('contactSuccess').classList.add('show');
-    e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
-  }).catch(()=>{
-    document.getElementById('contactSuccess').classList.add('show');
-    e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
-  });
+  // Show success immediately — don't wait for slow Apps Script
+  document.getElementById('contactSuccess').classList.add('show');
+  e.target.querySelectorAll('input,select,textarea,button[type=submit]').forEach(el=>el.style.display='none');
+  // Submit in background
+  fetch(SHEET_URL,{method:'POST',body:JSON.stringify({formType:'contact',name,email,phone,interest,message})}).catch(()=>{});
 }
 
 // ── LOAD APPROVED REVIEWS FROM SHEET ──
@@ -198,11 +183,36 @@ function renderReviews(reviews){
   initReveal();
 }
 function loadApprovedReviews(){
+  // Show cached reviews instantly if available
+  try{
+    const cached=localStorage.getItem('vv_reviews');
+    const cachedTime=localStorage.getItem('vv_reviews_time');
+    const oneHour=60*60*1000;
+    if(cached&&cachedTime&&(Date.now()-parseInt(cachedTime))<oneHour){
+      renderReviews(JSON.parse(cached));
+      // Still fetch in background to update cache silently
+      fetch(SHEET_URL).then(r=>r.json()).then(reviews=>{
+        if(Array.isArray(reviews)&&reviews.length){
+          localStorage.setItem('vv_reviews',JSON.stringify(reviews));
+          localStorage.setItem('vv_reviews_time',Date.now().toString());
+        }
+      }).catch(()=>{});
+      return;
+    }
+  }catch(e){}
+  // No cache — fetch and show
   fetch(SHEET_URL)
     .then(r=>r.json())
     .then(reviews=>{
-      if(!Array.isArray(reviews)||!reviews.length){renderReviews(PLACEHOLDER_REVIEWS);}
-      else{renderReviews(reviews);}
+      if(!Array.isArray(reviews)||!reviews.length){
+        renderReviews(PLACEHOLDER_REVIEWS);
+      } else {
+        renderReviews(reviews);
+        try{
+          localStorage.setItem('vv_reviews',JSON.stringify(reviews));
+          localStorage.setItem('vv_reviews_time',Date.now().toString());
+        }catch(e){}
+      }
     }).catch(()=>{renderReviews(PLACEHOLDER_REVIEWS);});
 }
 loadApprovedReviews();
