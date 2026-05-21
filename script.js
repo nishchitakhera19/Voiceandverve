@@ -254,12 +254,7 @@ function loadApprovedReviews(){
       }
     }).catch(()=>{renderReviews(PLACEHOLDER_REVIEWS);});
 }
-// Delay fetch until page is fully painted — improves LCP score
-if(document.readyState==='complete'){
-  setTimeout(loadApprovedReviews, 800);
-} else {
-  window.addEventListener('load', ()=>setTimeout(loadApprovedReviews, 800));
-}
+loadApprovedReviews();
 
 // ── FAQ TOGGLE ──
 function toggleFaq(btn){
