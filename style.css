@@ -107,7 +107,8 @@ main{padding-top:72px}
 
 
 /* ── SOCIAL ICON BUTTONS ── */
-.social-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:none;text-decoration:none;transition:all 0.2s;color:var(--muted);border-radius:2px;background:none}
+.social-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:none;text-decoration:none;transition:color 0.2s;color:var(--muted);border-radius:2px;background:none}
+.social-icon-btn:hover{color:var(--gold)}
 .social-icon-btn:hover{color:var(--gold);border-color:var(--gold);background:rgba(212,160,23,0.07)}
 .social-icon-btn svg{width:18px;height:18px;fill:currentColor}
 
