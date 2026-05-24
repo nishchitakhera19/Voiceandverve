@@ -1,14 +1,4 @@
-// ── CUSTOM CURSOR ──
-const cursor=document.getElementById('cursor');
-const cursorRing=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-function animateRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;cursorRing.style.left=rx+'px';cursorRing.style.top=ry+'px';requestAnimationFrame(animateRing)}
-animateRing();
-document.querySelectorAll('a,button,.course-card,.review-card,.review-full,.cred-card,.stat,.filter-btn').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cursor.classList.add('expanded');cursorRing.classList.add('expanded')});
-  el.addEventListener('mouseleave',()=>{cursor.classList.remove('expanded');cursorRing.classList.remove('expanded')});
-});
+
 
 // ── PARTICLES ──
 function createParticles(){
@@ -31,7 +21,7 @@ const progressBar=document.getElementById('progressBar');
 window.addEventListener('scroll',()=>{
   const scrolled=window.scrollY;
   const total=document.documentElement.scrollHeight-window.innerHeight;
-  progressBar.style.width=(total>0?(scrolled/total*100):0)+'%';
+  progressBar.style.transform=`scaleX(${total>0?(scrolled/total):0})`;
   document.getElementById('mainNav').classList.toggle('scrolled',scrolled>50);
 });
 
