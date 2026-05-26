@@ -200,20 +200,21 @@ if('requestIdleCallback' in window){
         <button class="btn-gold" onclick="openModal()">🎁 FREE DEMO CLASS ↗</button>
         <p style="font-family:var(--sans);font-size:0.75rem;color:var(--gold);letter-spacing:0.06em;margin-top:0.6rem">⚡ Limited slots — book before they fill up</p>
         <a href="/courses.html" class="btn-ghost">BROWSE COURSES →</a>
-      <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem">
-        <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:10px 14px">
-          <div style="color:#F5C542;font-size:0.8rem;flex-shrink:0;padding-top:2px">★★★★★</div>
-          <div style="font-size:0.78rem;color:var(--muted);line-height:1.5"><span style="color:var(--white);font-weight:500">"Won school debate after 4 weeks"</span> — Priya S., Parent · Gurgaon</div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:10px 14px">
-          <div style="color:#F5C542;font-size:0.8rem;flex-shrink:0;padding-top:2px">★★★★★</div>
-          <div style="font-size:0.78rem;color:var(--muted);line-height:1.5"><span style="color:var(--white);font-weight:500">"Got my dream job after mock sessions"</span> — Arjun M., Professional · Delhi</div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:10px 14px">
-          <div style="color:#F5C542;font-size:0.8rem;flex-shrink:0;padding-top:2px">★★★★★</div>
-          <div style="font-size:0.78rem;color:var(--muted);line-height:1.5"><span style="color:var(--white);font-weight:500">"Board scores up 18 marks in 8 weeks"</span> — Sunita V., Parent · Noida</div>
-        </div>
       </div>
+      <!-- Mini reviews — real testimonials below CTA -->
+      <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:0.65rem;max-width:460px">
+        <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:10px 14px">
+          <div style="color:#F5C542;font-size:0.85rem;flex-shrink:0;padding-top:1px;letter-spacing:1px">★★★★★</div>
+          <div style="font-size:0.78rem;color:var(--muted);line-height:1.55"><span style="color:var(--white);font-weight:500">"Now working as a teacher — confidence transformed"</span><br>— Hitesh Kumar Shah · Professional</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:10px 14px">
+          <div style="color:#F5C542;font-size:0.85rem;flex-shrink:0;padding-top:1px;letter-spacing:1px">★★★★★</div>
+          <div style="font-size:0.78rem;color:var(--muted);line-height:1.55"><span style="color:var(--white);font-weight:500">"Very confident to speak English after 1 year"</span><br>— Taranjeet Singh · Parent</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:10px 14px">
+          <div style="color:#F5C542;font-size:0.85rem;flex-shrink:0;padding-top:1px;letter-spacing:1px">★★★★★</div>
+          <div style="font-size:0.78rem;color:var(--muted);line-height:1.55"><span style="color:var(--white);font-weight:500">"Grammar, fluency & communication — all improved"</span><br>— Yeshwanth · Parent</div>
+        </div>
       </div>
     </div>
     <div class="hero-img-wrap">
@@ -276,7 +277,10 @@ if('requestIdleCallback' in window){
           <span class="course-icon">🎤</span>
           <div class="course-title">Public Speaking Classes</div>
           <div class="course-sub">From hesitation to standing ovations. Online public speaking and personality development classes for kids and adults — build a commanding presence that holds any room.</div>
-          <span class="learn-more">LEARN MORE →</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;flex-wrap:wrap;gap:8px">
+            <span class="learn-more" style="margin-top:0">LEARN MORE →</span>
+            <a href="/contact.html" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);border:1px solid rgba(212,160,23,0.4);border-radius:20px;padding:4px 12px;white-space:nowrap;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(212,160,23,0.12)'" onmouseout="this.style.background='none'">Contact for pricing →</a>
+          </div>
         </div>
         <div class="course-card-img">
           <img src="publicspeaking.webp" width="800" height="500" loading="lazy" alt="Public speaking classes for kids online India - Voice & Verve by Adv. Ritu Khera Gurgaon" style="width:100%;height:100%;object-fit:cover;display:block" decoding="async"/>
@@ -287,7 +291,10 @@ if('requestIdleCallback' in window){
           <span class="course-icon">🍽️</span>
           <div class="course-title">Table Manners & Etiquette</div>
           <div class="course-sub">Compose yourself at any table, anywhere in the world with grace and poise.</div>
-          <span class="learn-more">LEARN MORE →</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;flex-wrap:wrap;gap:8px">
+            <span class="learn-more" style="margin-top:0">LEARN MORE →</span>
+            <a href="/contact.html" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);border:1px solid rgba(212,160,23,0.4);border-radius:20px;padding:4px 12px;white-space:nowrap;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(212,160,23,0.12)'" onmouseout="this.style.background='none'">Contact for pricing →</a>
+          </div>
         </div>
         <div class="course-card-img">
           <img src="tablemanners.webp" width="800" height="500" loading="lazy" alt="Table manners and etiquette classes for children online - Voice & Verve coaching Gurgaon Delhi NCR" style="width:100%;height:100%;object-fit:cover;display:block" decoding="async"/>
@@ -298,7 +305,10 @@ if('requestIdleCallback' in window){
           <span class="course-icon">📖</span>
           <div class="course-title">Basic English Grammar</div>
           <div class="course-sub">Tense, voice, narration — finally clear. English grammar coaching for CBSE, ICSE & IB students. Score 90+ in your boards.</div>
-          <span class="learn-more">LEARN MORE →</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;flex-wrap:wrap;gap:8px">
+            <span class="learn-more" style="margin-top:0">LEARN MORE →</span>
+            <a href="/contact.html" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);border:1px solid rgba(212,160,23,0.4);border-radius:20px;padding:4px 12px;white-space:nowrap;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(212,160,23,0.12)'" onmouseout="this.style.background='none'">Contact for pricing →</a>
+          </div>
         </div>
         <div class="course-card-img">
           <img src="grammar.webp" width="800" height="500" loading="lazy" alt="English grammar classes for kids all boards CBSE ICSE IB online - Voice & Verve by Ritu Khera" style="width:100%;height:100%;object-fit:cover;display:block" decoding="async"/>
@@ -309,7 +319,10 @@ if('requestIdleCallback' in window){
           <span class="course-icon">💼</span>
           <div class="course-title">Interview Preparation</div>
           <div class="course-sub">Walk in nervous. Walk out hired. Interview preparation coaching for freshers and working professionals in India.</div>
-          <span class="learn-more">LEARN MORE →</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;flex-wrap:wrap;gap:8px">
+            <span class="learn-more" style="margin-top:0">LEARN MORE →</span>
+            <a href="/contact.html" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);border:1px solid rgba(212,160,23,0.4);border-radius:20px;padding:4px 12px;white-space:nowrap;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(212,160,23,0.12)'" onmouseout="this.style.background='none'">Contact for pricing →</a>
+          </div>
         </div>
         <div class="course-card-img">
           <img src="interview.webp" width="800" height="500" loading="lazy" alt="Interview preparation coaching online India - English communication skills for professionals Gurgaon" style="width:100%;height:100%;object-fit:cover;display:block" decoding="async"/>
@@ -370,47 +383,6 @@ if('requestIdleCallback' in window){
   </section>
 
 
-  <!-- PRICING -->
-  <section style="padding:4rem 1.2rem;background:var(--navy2)" id="pricing">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:2.5rem">
-        <div class="section-label">Investment</div>
-        <h2 style="font-family:var(--serif);font-size:2rem;color:var(--white);margin-bottom:0.75rem">Simple, transparent pricing</h2>
-        <p style="color:var(--muted);font-size:0.95rem;max-width:480px;margin:0 auto">Every program is tailored 1-on-1. Get in touch for a personalised quote — or start with a free demo.</p>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;max-width:900px;margin:0 auto">
-        <div style="background:var(--navy);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center">
-          <div style="font-size:1.5rem;margin-bottom:0.5rem">🎤</div>
-          <div style="font-family:var(--serif);font-size:1rem;color:var(--white);font-weight:600;margin-bottom:0.5rem">Public Speaking</div>
-          <div style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">Kids, teens &amp; adults</div>
-          <a href="/contact.html" style="font-size:0.8rem;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:6px 16px;border-radius:20px">Contact for pricing →</a>
-        </div>
-        <div style="background:var(--navy);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center">
-          <div style="font-size:1.5rem;margin-bottom:0.5rem">📖</div>
-          <div style="font-family:var(--serif);font-size:1rem;color:var(--white);font-weight:600;margin-bottom:0.5rem">English Grammar</div>
-          <div style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">CBSE, ICSE, IB</div>
-          <a href="/contact.html" style="font-size:0.8rem;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:6px 16px;border-radius:20px">Contact for pricing →</a>
-        </div>
-        <div style="background:var(--navy);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center">
-          <div style="font-size:1.5rem;margin-bottom:0.5rem">💼</div>
-          <div style="font-family:var(--serif);font-size:1rem;color:var(--white);font-weight:600;margin-bottom:0.5rem">Interview Prep</div>
-          <div style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">Freshers &amp; professionals</div>
-          <a href="/contact.html" style="font-size:0.8rem;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:6px 16px;border-radius:20px">Contact for pricing →</a>
-        </div>
-        <div style="background:var(--navy);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center">
-          <div style="font-size:1.5rem;margin-bottom:0.5rem">🍽️</div>
-          <div style="font-family:var(--serif);font-size:1rem;color:var(--white);font-weight:600;margin-bottom:0.5rem">Table Etiquette</div>
-          <div style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">Children &amp; adults</div>
-          <a href="/contact.html" style="font-size:0.8rem;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:6px 16px;border-radius:20px">Contact for pricing →</a>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:2rem">
-        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem">All programs include a <strong style="color:var(--white)">FREE 30-minute demo class</strong> — no payment required.</p>
-        <button class="btn-gold" onclick="openModal()">🎁 Book Free Demo First →</button>
-      </div>
-    </div>
-  </section>
-
   <!-- SEO Content -->
   <section style="padding:4rem 1.2rem;background:var(--navy)">
     <div class="container">
@@ -439,7 +411,6 @@ if('requestIdleCallback' in window){
         <li><a href="/about.html">About</a></li>
         <li><a href="/courses.html">Courses</a></li>
         <li><a href="/reviews.html">Reviews</a></li>
-        <li><a href="/#pricing">Pricing</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
     </div>
