@@ -4,7 +4,7 @@
 function createParticles(){
   const container=document.getElementById('particles');
   if(!container)return;
-  for(let i=0;i<18;i++){
+  for(let i=0;i<6;i++){
     const p=document.createElement('div');
     p.className='particle';
     p.style.left=Math.random()*100+'%';
