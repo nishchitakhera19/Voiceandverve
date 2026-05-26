@@ -267,6 +267,8 @@ nav.scrolled{background:rgba(13,15,26,0.98)}
 .course-sub{color:var(--muted);font-size:0.9rem;margin-bottom:1.8rem;line-height:1.7}
 .learn-more{font-family:var(--sans);font-size:0.74rem;letter-spacing:0.13em;color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;display:inline-flex;align-items:center;gap:0.4rem;transition:color 0.2s,border-color 0.2s}
 .learn-more:hover{color:var(--gold);border-color:var(--gold)}
+.pricing-pill{display:inline-block;margin-top:0.85rem;font-family:var(--sans);font-size:0.72rem;color:var(--gold);border:1px solid rgba(212,160,23,0.4);border-radius:20px;padding:5px 14px;text-decoration:none;transition:background 0.2s;cursor:pointer}
+.pricing-pill:hover{background:rgba(212,160,23,0.1)}
 
 /* Testimonials preview */
 .reviews-preview{padding:7rem 3rem;background:var(--navy2)}
