@@ -286,3 +286,27 @@ function toggleMobileMenu(){document.getElementById('mobileMenu').classList.togg
 
 // ── KEYBOARD ──
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+
+// ── EXIT INTENT ──
+(function(){
+  let shown = false;
+  function showExit(){
+    if(shown) return;
+    shown = true;
+    try{ if(sessionStorage.getItem('vv_exit_shown')) return; } catch(e){}
+    const popup = document.getElementById('exitPopup');
+    if(popup){ popup.style.display='flex'; try{ sessionStorage.setItem('vv_exit_shown','1'); }catch(e){} }
+  }
+  // Desktop: mouse leaves viewport top
+  document.addEventListener('mouseleave', function(e){ if(e.clientY < 5) showExit(); });
+  // Mobile: back button / page hide after 20s on page
+  let timeOnPage = 0;
+  const pageTimer = setInterval(function(){
+    timeOnPage++;
+    if(timeOnPage >= 45){ clearInterval(pageTimer); } // stop after 45s
+  }, 1000);
+  window.addEventListener('pagehide', function(){
+    if(timeOnPage > 20 && !shown) showExit();
+  });
+})();
