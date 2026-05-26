@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://voiceandverve.in/sitemap.xml
-LLMs: https://voiceandverve.in/llms.txt
