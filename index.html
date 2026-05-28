@@ -45,7 +45,20 @@ if('requestIdleCallback' in window){
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/></noscript>
 <link rel="preload" as="image" href="ritu.webp" fetchpriority="high" type="image/webp"/>
-<link rel="stylesheet" href="style.css"/>
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#D4A017;--navy:#080C14;--navy2:#0D1220;--border:rgba(255,255,255,0.08);--white:#F0F0F0;--muted:rgba(255,255,255,0.45);--serif:'Playfair Display',serif;--sans:'DM Sans',sans-serif}
+body{font-family:var(--sans);background:var(--navy);color:var(--white);overflow-x:hidden}
+.main-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.3s,backdrop-filter 0.3s}
+.nav-logo-text{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--white);text-decoration:none;letter-spacing:-0.01em}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:7rem 2rem 4rem;gap:3rem;position:relative;overflow:hidden;background:var(--navy)}
+.hero-h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);line-height:1.08;font-weight:600;color:var(--white)}
+.hero-h1 em{color:var(--gold);font-style:italic}
+.btn-gold{background:var(--gold);color:#000;border:none;border-radius:8px;padding:14px 28px;font-family:var(--sans);font-size:0.9rem;font-weight:600;cursor:pointer;display:inline-block;text-decoration:none}
+.progress-bar{position:fixed;top:72px;left:0;height:2px;background:var(--gold);z-index:99;width:100%;transform:scaleX(0);transform-origin:left;will-change:transform}
+</style>
+<link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="style.css"></noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -172,20 +185,7 @@ if('requestIdleCallback' in window){
         <p style="font-family:var(--sans);font-size:0.75rem;color:var(--gold);letter-spacing:0.06em;margin-top:0.6rem">⚡ Limited slots — book before they fill up</p>
         <a href="/courses.html" class="btn-ghost">BROWSE COURSES →</a>
       </div>
-      <div style="margin-top:1.4rem;display:flex;flex-direction:column;gap:0.45rem;max-width:400px">
-        <div style="display:flex;gap:9px;align-items:flex-start;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 11px">
-          <span style="color:#F5C542;font-size:0.72rem;flex-shrink:0;line-height:1.7">★★★★★</span>
-          <span style="font-size:0.74rem;color:rgba(255,255,255,0.5);line-height:1.55"><strong style="color:rgba(255,255,255,0.82);font-weight:500">"Confidence transformed — now a teacher"</strong> — Hitesh K., Professional</span>
-        </div>
-        <div style="display:flex;gap:9px;align-items:flex-start;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 11px">
-          <span style="color:#F5C542;font-size:0.72rem;flex-shrink:0;line-height:1.7">★★★★★</span>
-          <span style="font-size:0.74rem;color:rgba(255,255,255,0.5);line-height:1.55"><strong style="color:rgba(255,255,255,0.82);font-weight:500">"Very confident in English after 1 year"</strong> — Taranjeet S., Parent</span>
-        </div>
-        <div style="display:flex;gap:9px;align-items:flex-start;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 11px">
-          <span style="color:#F5C542;font-size:0.72rem;flex-shrink:0;line-height:1.7">★★★★★</span>
-          <span style="font-size:0.74rem;color:rgba(255,255,255,0.5);line-height:1.55"><strong style="color:rgba(255,255,255,0.82);font-weight:500">"Grammar, fluency &amp; communication improved"</strong> — Yeshwanth, Parent</span>
-        </div>
-      </div>
+
     </div>
     <div class="hero-img-wrap">
       <div class="hero-quote">Confidence is built — one brave word at a time.</div>
@@ -198,7 +198,7 @@ if('requestIdleCallback' in window){
         3. Recommended size: 800×1000px portrait, high resolution
         ══════════════════════════════════════════════════
       -->
-      <img src="ritu.webp" alt="Adv. Ritu Khera – English and public speaking coach, Gurgaon" width="600" height="800" fetchpriority="high" style="width:100%;height:auto;max-height:100%;object-fit:contain;object-position:top center;display:block;background:var(--navy2)"/>
+      <img src="ritu.webp" fetchpriority="high" loading="eager" alt="Adv. Ritu Khera – English and public speaking coach, Gurgaon" width="600" height="800" fetchpriority="high" style="width:100%;height:auto;max-height:100%;object-fit:contain;object-position:top center;display:block;background:var(--navy2)"/>
       <div class="hero-badge">
         <span class="num">20+</span>
         <span class="lbl">Years of Impact</span>
@@ -334,19 +334,6 @@ if('requestIdleCallback' in window){
   </section>
 
   <!-- CTA -->
-
-  <section style="padding:3.5rem 1.2rem;background:var(--navy2)">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:2rem"><div class="section-label">Common Questions</div><h2 style="font-family:var(--serif);font-size:1.9rem;color:var(--white)">Parents ask. <em style="color:var(--gold)">We answer.</em></h2></div>
-      <div style="max-width:680px;margin:0 auto">
-        <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-weight:500;color:var(--white);margin-bottom:0.4rem;font-size:0.95rem">What age groups do you teach?</div><div style="color:var(--muted);font-size:0.88rem;line-height:1.7">Children from Class 4 to Class 10, teenagers, and working professionals.</div></div>
-        <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-weight:500;color:var(--white);margin-bottom:0.4rem;font-size:0.95rem">Which boards do you cover?</div><div style="color:var(--muted);font-size:0.88rem;line-height:1.7">CBSE, ICSE, IB, Cambridge and all State Boards.</div></div>
-        <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-weight:500;color:var(--white);margin-bottom:0.4rem;font-size:0.95rem">How does the free demo work?</div><div style="color:var(--muted);font-size:0.88rem;line-height:1.7">30-minute 1-on-1 with Adv. Ritu Khera. Free, no payment, no commitment.</div></div>
-        <div style="padding:1rem 0"><div style="font-weight:500;color:var(--white);margin-bottom:0.4rem;font-size:0.95rem">How soon will I see results?</div><div style="color:var(--muted);font-size:0.88rem;line-height:1.7">Most students notice a difference within the first 3–4 sessions.</div></div>
-      </div>
-      <div style="text-align:center;margin-top:1.5rem"><a href="/faq.html" style="color:var(--gold);text-decoration:none;font-size:0.85rem;border-bottom:1px solid rgba(212,160,23,0.4)">See all frequently asked questions →</a></div>
-    </div>
-  </section>
   <section class="cta-section reveal">
     <div class="cta-label">Your Turn</div>
     <h2 class="cta-h2">Don't just speak.<br><em>Be heard.</em></h2>
