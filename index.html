@@ -45,18 +45,6 @@ if('requestIdleCallback' in window){
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/></noscript>
 <link rel="preload" as="image" href="ritu.webp" fetchpriority="high" type="image/webp"/>
-<style>
-*,::before,::after{box-sizing:border-box;margin:0;padding:0}
-:root{--gold:#D4A017;--navy:#080C14;--navy2:#0D1220;--border:rgba(255,255,255,0.08);--white:#F0F0F0;--muted:rgba(255,255,255,0.45);--serif:'Playfair Display',serif;--sans:'DM Sans',sans-serif}
-body{font-family:var(--sans);background:var(--navy);color:var(--white);overflow-x:hidden}
-.main-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.3s,backdrop-filter 0.3s}
-.nav-logo-text{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--white);text-decoration:none;letter-spacing:-0.01em}
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:7rem 2rem 4rem;gap:3rem;position:relative;overflow:hidden;background:var(--navy)}
-.hero-h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);line-height:1.08;font-weight:600;color:var(--white)}
-.hero-h1 em{color:var(--gold);font-style:italic}
-.btn-gold{background:var(--gold);color:#000;border:none;border-radius:8px;padding:14px 28px;font-family:var(--sans);font-size:0.9rem;font-weight:600;cursor:pointer;display:inline-block;text-decoration:none}
-.progress-bar{position:fixed;top:72px;left:0;height:2px;background:var(--gold);z-index:99;width:100%;transform:scaleX(0);transform-origin:left;will-change:transform}
-</style>
 <link rel="stylesheet" href="style.css"/>
 <script type="application/ld+json">
 {
