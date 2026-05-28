@@ -14,7 +14,7 @@ function createParticles(){
     container.appendChild(p);
   }
 }
-createParticles();
+if(window.innerWidth>768){if(document.readyState==='complete'){createParticles();}else{window.addEventListener('load',createParticles);}}
 
 // ── SCROLL PROGRESS ──
 const progressBar=document.getElementById('progressBar');
@@ -104,7 +104,6 @@ function submitDemo(e){
     formType:'demo',
     name:e.target.querySelector('input[type=text]').value,
     phone:document.getElementById('demo-phone').value,
-    email:(document.getElementById('demo-email-visible')||{}).value||'',
     interest:document.getElementById('demo-interest').value
   };
   const btn=e.target.querySelector('button[type=submit]');
