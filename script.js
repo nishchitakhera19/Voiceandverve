@@ -34,7 +34,6 @@ initReveal();
 
 // ── COUNTER ANIMATION ──
 function animateCounter(el,target,suffix=''){
-  let start=0;
   const duration=1800;
   const startTime=performance.now();
   function step(now){
@@ -104,6 +103,7 @@ function submitDemo(e){
     formType:'demo',
     name:e.target.querySelector('input[type=text]').value,
     phone:document.getElementById('demo-phone').value,
+    email:(document.getElementById('demo-email-visible')||{}).value||'',
     interest:document.getElementById('demo-interest').value
   };
   const btn=e.target.querySelector('button[type=submit]');
