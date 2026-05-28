@@ -34,6 +34,7 @@ initReveal();
 
 // ── COUNTER ANIMATION ──
 function animateCounter(el,target,suffix=''){
+  let start=0;
   const duration=1800;
   const startTime=performance.now();
   function step(now){
